@@ -1,5 +1,6 @@
 /// <reference types="node" />
 import * as fs from 'fs';
+import { SystemInfo } from './types';
 export declare const pathExists: typeof fs.exists.__promisify__;
 export declare function ensureExists(...pathNames: string[]): string;
 export declare function run(cwd: string | undefined, cmd: string): Promise<string | undefined>;
@@ -13,3 +14,4 @@ export declare function assertString(input: any, name?: string): string;
 export declare function assertNumber(input: any, name?: string): number;
 export declare function assertBoolean(input: any, name?: string): boolean;
 export declare function withDefault<T>(input: T, defaultValue: T): T;
+export declare function getSystemInfo(): SystemInfo;
