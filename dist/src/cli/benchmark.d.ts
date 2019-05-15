@@ -14,3 +14,4 @@ export interface BenchmarkPackageOptions {
     definitelyTypedPath: string;
 }
 export declare function benchmark(args: Args): Promise<void>;
+export declare function benchmarkPackage(packageName: string, packageVersion: string, batchRunStart: Date, options: BenchmarkPackageOptions): Promise<import("../common").PackageBenchmark[]>;

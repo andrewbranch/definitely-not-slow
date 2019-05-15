@@ -1,4 +1,7 @@
 export declare const config: {
+    benchmarks: {
+        languageServiceIterations: number;
+    };
     database: {
         benchmarksDatabaseId: string;
         packageBenchmarksContainerId: string;
