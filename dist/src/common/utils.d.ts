@@ -4,7 +4,6 @@ import { SystemInfo } from './types';
 import { PackageId } from 'types-publisher/bin/lib/packages';
 export declare const pathExists: typeof fs.exists.__promisify__;
 export declare function ensureExists(...pathNames: string[]): string;
-export declare function run(cwd: string | undefined, cmd: string): Promise<string | undefined>;
 export declare type Args = {
     [key: string]: string | true | number;
 };
