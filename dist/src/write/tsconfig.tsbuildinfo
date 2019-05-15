@@ -1018,7 +1018,7 @@
         "signature": "e04966deed623434788326e636eec8dc604a78d152dd5a51279b416db3b8843d"
       },
       "/users/anbranc/developer/microsoft/definitely-not-slow/src/measure/measureperf.ts": {
-        "version": "623f68fbfbd0aa17d88d485bffdc797eb84911163594d6c8eaf27f13b6c82dc9",
+        "version": "ce07b63bce933bca41bad12f23f64844d4dcc25dd3b65dbb290e0b4294fb3f30",
         "signature": "4310b2a2fbb51d1b2b107761c9a7b45075219419eeb9cd8f3d4b224b726b2621"
       },
       "/users/anbranc/developer/microsoft/definitely-not-slow/src/measure/printsummary.ts": {
@@ -1038,7 +1038,7 @@
         "signature": "afbe72fb4085bf8adc9774d6856b9cc10c1f48880c965b38f1dc17fbd7cb8fc6"
       },
       "/users/anbranc/developer/microsoft/definitely-not-slow/src/cli/compare.ts": {
-        "version": "86971f6d0888228edd4f8cfd4f13523ce10d0ca1bed3b327cc90f9f6bf39100e",
+        "version": "dfa976116c1b63a78446c2606d9367121733d764c5c6635aabac024799038d12",
         "signature": "49ce9e6d20af610c0ee4ebf66153dc328dbb43dbfdf8d08b3406f87465113871"
       },
       "/users/anbranc/developer/microsoft/definitely-not-slow/src/cli/getpackagestobenchmark.ts": {
@@ -4698,7 +4698,6 @@
       "/users/anbranc/developer/microsoft/definitely-not-slow/src/measure/getparsedcommandlineforpackage.ts",
       "/users/anbranc/developer/microsoft/definitely-not-slow/src/measure/createlanguageservicehost.ts",
       "/users/anbranc/developer/microsoft/definitely-not-slow/src/measure/measurelanguageserviceworker.ts",
-      "/users/anbranc/developer/microsoft/definitely-not-slow/src/measure/measureperf.ts",
       "/users/anbranc/developer/microsoft/definitely-not-slow/src/measure/printsummary.ts",
       "/users/anbranc/developer/microsoft/definitely-not-slow/src/measure/index.ts",
       "/users/anbranc/developer/microsoft/definitely-not-slow/src/cli/benchmark.ts",
@@ -4708,6 +4707,7 @@
       "/users/anbranc/developer/microsoft/definitely-not-slow/src/measure/types/dtslint.d.ts",
       "/users/anbranc/developer/microsoft/definitely-not-slow/src/measure/types/node.d.ts",
       "/users/anbranc/developer/microsoft/definitely-not-slow/node_modules/@types/tar-stream/index.d.ts",
+      "/users/anbranc/developer/microsoft/definitely-not-slow/src/measure/measureperf.ts",
       "/users/anbranc/developer/microsoft/definitely-not-slow/src/cli/compare.ts"
     ]
   },
