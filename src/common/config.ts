@@ -7,7 +7,7 @@ export const config = {
   database: {
     benchmarksDatabaseId: 'benchmarks',
     packageBenchmarksContainerId: 'packageBenchmarks',
-    packageBenchmarksDocumentSchemaVersion: 0,
+    packageBenchmarksDocumentSchemaVersion: 1,
     endpoint: 'https://dt-perf.documents.azure.com:443/',
     get writeKey() {
       return assertDefined(
@@ -19,5 +19,22 @@ export const config = {
         process.env.DATABASE_READ_KEY,
         `Required environment variable 'DATABASE_READ_KEY' was not set`);
     }
+  },
+  github: {
+    userAgent: 'definitely-not-slow',
+    get typeScriptBotAuthToken() {
+      return assertDefined(
+        process.env.TYPESCRIPT_BOT_GITHUB_TOKEN,
+        `Required environment variable 'TYPESCRIPT_BOT_GITHUB_TOKEN' was not set`);
+    },
+    commonParams: {
+      owner: 'Microsoft',
+      repo: 'DefinitelyTyped',
+    },
+  },
+  comparison: {
+    percentDiffWarningThreshold: 0.1,
+    percentDiffSevereThreshold: 0.5,
+    percentDiffGoldStarThreshold: -0.25,
   },
 };
