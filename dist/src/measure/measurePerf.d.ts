@@ -7,7 +7,7 @@ export interface MeasurePerfOptions {
     typeScriptVersion: string;
     definitelyTypedRootPath: string;
     definitelyTypedFS: FS;
-    maxLanguageServiceTestPositions?: number;
+    maxRunSeconds?: number;
     progress?: boolean;
     nProcesses: number;
     iterations: number;
@@ -16,4 +16,4 @@ export interface MeasurePerfOptions {
     ts: typeof import('typescript');
     batchRunStart: Date;
 }
-export declare function measurePerf({ packageName, packageVersion, typeScriptVersion, definitelyTypedRootPath, definitelyTypedFS, allPackages, maxLanguageServiceTestPositions, progress, nProcesses, iterations, tsPath, ts, batchRunStart, }: MeasurePerfOptions): Promise<PackageBenchmark[]>;
+export declare function measurePerf({ packageName, packageVersion, typeScriptVersion, definitelyTypedRootPath, definitelyTypedFS, allPackages, maxRunSeconds, progress, nProcesses, iterations, tsPath, ts, batchRunStart, }: MeasurePerfOptions): Promise<PackageBenchmark[]>;

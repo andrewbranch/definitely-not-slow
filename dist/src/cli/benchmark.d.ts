@@ -9,7 +9,7 @@ export interface BenchmarkPackageOptions {
     progress: boolean;
     iterations: number;
     nProcesses: number;
-    maxLanguageServiceTestPositions?: number;
+    maxRunSeconds?: number;
     printSummary: boolean;
     definitelyTypedPath: string;
     failOnErrors?: boolean;

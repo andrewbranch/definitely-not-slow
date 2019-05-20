@@ -15,6 +15,8 @@ export interface PackageBenchmark {
     typeCount: number;
     benchmarkDuration: number;
     relationCacheSizes?: RelationCacheSizes;
+    testIdentifierCount: number;
+    requestedLanguageServiceTestIterations: number;
     languageServiceBenchmarks: LanguageServiceBenchmark[];
 }
 export interface PackageBenchmarkSummary {
@@ -27,6 +29,8 @@ export interface PackageBenchmarkSummary {
     typeCount: number;
     benchmarkDuration: number;
     relationCacheSizes?: RelationCacheSizes;
+    testIdentifierCount: number;
+    requestedLanguageServiceTestIterations: number;
     completions: StatSummary<LanguageServiceBenchmark>;
     quickInfo: StatSummary<LanguageServiceBenchmark>;
 }
@@ -34,6 +38,7 @@ export interface StatSummary<T> {
     mean: number;
     median: number;
     standardDeviation: number;
+    trials: number;
     worst: T;
 }
 export interface LanguageServiceBenchmark {
