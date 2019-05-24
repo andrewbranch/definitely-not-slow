@@ -1,6 +1,6 @@
 /// <reference types="node" />
 import * as fs from 'fs';
-import { SystemInfo } from './types';
+import { SystemInfo, Document } from './types';
 import { PackageId } from 'types-publisher/bin/lib/packages';
 export declare const pathExists: typeof fs.exists.__promisify__;
 export declare function ensureExists(...pathNames: string[]): string;
@@ -26,3 +26,4 @@ export declare function packageIdsAreEqual(a: PackageId, b: PackageId): boolean;
 export declare function getPercentDiff(actual: number, expected: number): number;
 export declare function isWithin(actual: number, expected: number, tolerance: number): boolean;
 export declare function systemsAreCloseEnough(a: SystemInfo, b: SystemInfo, cpuSpeedTolerance?: number): boolean;
+export declare function createDocument<T>(body: T, version: number): Document<T>;

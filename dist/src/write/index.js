@@ -9,18 +9,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("../common");
-function createDocument(body, version) {
-    return {
-        version,
-        createdAt: new Date(),
-        system: common_1.getSystemInfo(),
-        body,
-    };
-}
 function insertPackageBenchmark(benchmark, version, container) {
     return __awaiter(this, void 0, void 0, function* () {
-        return container.items.create(createDocument(benchmark, version));
+        return container.items.create(common_1.createDocument(benchmark, version));
     });
 }
 exports.insertPackageBenchmark = insertPackageBenchmark;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi9zcmMvd3JpdGUvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7OztBQUNBLHNDQUE2RTtBQUU3RSxTQUFTLGNBQWMsQ0FBSSxJQUFPLEVBQUUsT0FBZTtJQUNqRCxPQUFPO1FBQ0wsT0FBTztRQUNQLFNBQVMsRUFBRSxJQUFJLElBQUksRUFBRTtRQUNyQixNQUFNLEVBQUUsc0JBQWEsRUFBRTtRQUN2QixJQUFJO0tBQ0wsQ0FBQztBQUNKLENBQUM7QUFFRCxTQUFzQixzQkFBc0IsQ0FBQyxTQUFrQyxFQUFFLE9BQWUsRUFBRSxTQUFvQjs7UUFDcEgsT0FBTyxTQUFTLENBQUMsS0FBSyxDQUFDLE1BQU0sQ0FBQyxjQUFjLENBQUMsU0FBUyxFQUFFLE9BQU8sQ0FBQyxDQUFDLENBQUM7SUFDcEUsQ0FBQztDQUFBO0FBRkQsd0RBRUMifQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi9zcmMvd3JpdGUvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7OztBQUNBLHNDQUFvRTtBQUVwRSxTQUFzQixzQkFBc0IsQ0FBQyxTQUFrQyxFQUFFLE9BQWUsRUFBRSxTQUFvQjs7UUFDcEgsT0FBTyxTQUFTLENBQUMsS0FBSyxDQUFDLE1BQU0sQ0FBQyx1QkFBYyxDQUFDLFNBQVMsRUFBRSxPQUFPLENBQUMsQ0FBQyxDQUFDO0lBQ3BFLENBQUM7Q0FBQTtBQUZELHdEQUVDIn0=
