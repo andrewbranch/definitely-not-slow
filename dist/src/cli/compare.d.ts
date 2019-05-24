@@ -6,6 +6,7 @@ export interface CompareOptions {
     typeScriptVersionMajorMinor: string;
     packageName: string;
     packageVersion: number;
+    maxRunSeconds?: number;
 }
 export declare function compare(args: Args): Promise<void>;
-export declare function compareBenchmarks({ allPackages, definitelyTypedPath, typeScriptVersionMajorMinor, packageName, packageVersion, }: CompareOptions): Promise<[Document<PackageBenchmarkSummary>, Document<PackageBenchmarkSummary>]>;
+export declare function compareBenchmarks({ allPackages, definitelyTypedPath, typeScriptVersionMajorMinor, packageName, packageVersion, maxRunSeconds, }: CompareOptions): Promise<[Document<PackageBenchmarkSummary>, Document<PackageBenchmarkSummary>]>;

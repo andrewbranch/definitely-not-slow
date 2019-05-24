@@ -5,7 +5,7 @@ import { PackageId } from 'types-publisher/bin/lib/packages';
 export declare const pathExists: typeof fs.exists.__promisify__;
 export declare function ensureExists(...pathNames: string[]): string;
 export declare type Args = {
-    [key: string]: string | true | number;
+    [key: string]: string | boolean | number;
 };
 export declare function deserializeArgs(args: string[]): Args;
 export declare function serializeArgs(args: Args): string;
