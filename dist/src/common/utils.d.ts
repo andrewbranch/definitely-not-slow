@@ -23,5 +23,6 @@ export interface GetChangedPackagesOptions {
 export declare function getChangedPackages({ diffFrom, diffTo, definitelyTypedPath }: GetChangedPackagesOptions): Promise<PackageId[] | undefined>;
 export declare function packageIdsAreEqual(a: PackageId): (b: PackageId) => boolean;
 export declare function packageIdsAreEqual(a: PackageId, b: PackageId): boolean;
+export declare function getPercentDiff(actual: number, expected: number): number;
 export declare function isWithin(actual: number, expected: number, tolerance: number): boolean;
 export declare function systemsAreCloseEnough(a: SystemInfo, b: SystemInfo, cpuSpeedTolerance?: number): boolean;
