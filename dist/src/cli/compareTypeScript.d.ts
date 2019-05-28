@@ -6,6 +6,7 @@ export interface CompareTypeScriptOptions {
     packages?: PackageId[];
     maxRunSeconds?: number;
     typeScriptPath?: string;
+    upload: boolean;
 }
 export declare function compareTypeScriptCLI(args: Args): Promise<void>;
-export declare function compareTypeScript({ compareAgainstMajorMinor, definitelyTypedPath, packages, maxRunSeconds, typeScriptPath, }: CompareTypeScriptOptions): Promise<void>;
+export declare function compareTypeScript({ compareAgainstMajorMinor, definitelyTypedPath, packages, maxRunSeconds, typeScriptPath, upload, }: CompareTypeScriptOptions): Promise<void>;
