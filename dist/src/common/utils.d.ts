@@ -13,6 +13,7 @@ export declare function compact<T>(arr: (T | null | undefined)[]): T[];
 export declare function assertString(input: any, name?: string): string;
 export declare function assertNumber(input: any, name?: string): number;
 export declare function assertBoolean(input: any, name?: string): boolean;
+export declare function assertDefined<T>(input: T | null | undefined, name?: string): T;
 export declare function withDefault<T>(input: T, defaultValue: T): T;
 export declare function getSystemInfo(): SystemInfo;
 export interface GetChangedPackagesOptions {
@@ -27,3 +28,6 @@ export declare function getPercentDiff(actual: number, expected: number): number
 export declare function isWithin(actual: number, expected: number, tolerance: number): boolean;
 export declare function systemsAreCloseEnough(a: SystemInfo, b: SystemInfo, cpuSpeedTolerance?: number): boolean;
 export declare function createDocument<T>(body: T, version: number): Document<T>;
+export declare function parsePackageKey(key: string): PackageId;
+export declare function toPackageKey(name: string, majorVersion: string): string;
+export declare function toPackageKey(packageId: PackageId): string;
