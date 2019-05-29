@@ -71,7 +71,7 @@ export function assertBoolean(input: any, name?: string): boolean {
 
 export function assertDefined<T>(input: T | null | undefined, name?: string): T {
   if (input == undefined) {
-    throw new Error(`Expected a string for input${name ? ` '${name}'` : ''} but received ${typeof input}`);
+    throw new Error(`Expected ${name ? ` '${name}'` : ''} to be defined`);
   }
   return input;
 }
@@ -129,7 +129,7 @@ export function packageIdsAreEqual(a: PackageId, b?: PackageId): boolean | ((b: 
 }
 
 export function getPercentDiff(actual: number, expected: number): number {
-  return (expected - actual) / expected;
+  return (actual - expected) / expected;
 }
 
 export function isWithin(actual: number, expected: number, tolerance: number): boolean {
