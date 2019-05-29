@@ -1,12 +1,10 @@
-import { FS } from 'types-publisher/bin/get-definitely-typed';
 import { AllPackages } from 'types-publisher/bin/lib/packages';
 import { PackageBenchmark } from '../common';
 export interface MeasurePerfOptions {
     packageName: string;
-    packageVersion?: string;
+    packageVersion: string;
     typeScriptVersion: string;
     definitelyTypedRootPath: string;
-    definitelyTypedFS: FS;
     maxRunSeconds?: number;
     progress?: boolean;
     nProcesses: number;
@@ -17,4 +15,4 @@ export interface MeasurePerfOptions {
     batchRunStart: Date;
     failOnErrors?: boolean;
 }
-export declare function measurePerf({ packageName, packageVersion, typeScriptVersion, definitelyTypedRootPath, definitelyTypedFS, allPackages, maxRunSeconds, progress, nProcesses, iterations, tsPath, ts, batchRunStart, failOnErrors, }: MeasurePerfOptions): Promise<PackageBenchmark[]>;
+export declare function measurePerf({ packageName, packageVersion, typeScriptVersion, definitelyTypedRootPath, allPackages, maxRunSeconds, progress, nProcesses, iterations, tsPath, ts, batchRunStart, failOnErrors, }: MeasurePerfOptions): Promise<PackageBenchmark>;

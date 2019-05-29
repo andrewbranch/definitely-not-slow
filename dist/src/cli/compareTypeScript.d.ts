@@ -1,14 +1,14 @@
 import { PackageId } from "types-publisher/bin/lib/packages";
-import { PackageBenchmarkSummary, Args, JSONDocument } from "../common";
+import { PackageBenchmarkSummary, Args, JSONDocument, QueryResult } from "../common";
 export interface CompareTypeScriptOptions {
     compareAgainstMajorMinor: string;
     definitelyTypedPath: string;
     packages?: PackageId[];
     maxRunSeconds?: number;
-    typeScriptPath?: string;
+    typeScriptPath: string;
     outFile?: string;
     groups?: {
-        [key: string]: JSONDocument<PackageBenchmarkSummary>;
+        [key: string]: QueryResult<JSONDocument<PackageBenchmarkSummary>>;
     }[];
     agentCount?: number;
     agentIndex?: number;

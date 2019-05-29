@@ -6,6 +6,8 @@ export declare const config: {
         benchmarksDatabaseId: string;
         packageBenchmarksContainerId: string;
         packageBenchmarksDocumentSchemaVersion: number;
+        typeScriptComparisonsContainerId: string;
+        typeScriptComparisonsDocumentSchemaVersion: number;
         endpoint: string;
         readonly writeKey: string;
         readonly readKey: string;

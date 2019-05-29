@@ -9,10 +9,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("../common");
-function insertPackageBenchmark(benchmark, version, container) {
+function insertDocument(benchmark, version, container) {
     return __awaiter(this, void 0, void 0, function* () {
-        return container.items.create(common_1.createDocument(benchmark, version));
+        const response = yield container.items.create(common_1.createDocument(benchmark, version));
+        return response.item;
     });
 }
-exports.insertPackageBenchmark = insertPackageBenchmark;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi9zcmMvd3JpdGUvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7OztBQUNBLHNDQUFvRTtBQUVwRSxTQUFzQixzQkFBc0IsQ0FBQyxTQUFrQyxFQUFFLE9BQWUsRUFBRSxTQUFvQjs7UUFDcEgsT0FBTyxTQUFTLENBQUMsS0FBSyxDQUFDLE1BQU0sQ0FBQyx1QkFBYyxDQUFDLFNBQVMsRUFBRSxPQUFPLENBQUMsQ0FBQyxDQUFDO0lBQ3BFLENBQUM7Q0FBQTtBQUZELHdEQUVDIn0=
+exports.insertDocument = insertDocument;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi9zcmMvd3JpdGUvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7OztBQUNBLHNDQUE2RjtBQUk3RixTQUFzQixjQUFjLENBQUMsU0FBNEQsRUFBRSxPQUFlLEVBQUUsU0FBb0I7O1FBQ3RJLE1BQU0sUUFBUSxHQUFHLE1BQU0sU0FBUyxDQUFDLEtBQUssQ0FBQyxNQUFNLENBQUMsdUJBQWMsQ0FBQyxTQUFTLEVBQUUsT0FBTyxDQUFDLENBQUMsQ0FBQztRQUNsRixPQUFPLFFBQVEsQ0FBQyxJQUFJLENBQUM7SUFDdkIsQ0FBQztDQUFBO0FBSEQsd0NBR0MifQ==

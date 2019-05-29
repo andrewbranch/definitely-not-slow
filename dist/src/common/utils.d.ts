@@ -1,6 +1,6 @@
 /// <reference types="node" />
 import * as fs from 'fs';
-import { SystemInfo, Document } from './types';
+import { SystemInfo, Document, JSONDocument, PackageBenchmarkSummary, QueryResult } from './types';
 import { PackageId } from 'types-publisher/bin/lib/packages';
 export declare const pathExists: typeof fs.exists.__promisify__;
 export declare function ensureExists(...pathNames: string[]): string;
@@ -31,3 +31,5 @@ export declare function createDocument<T>(body: T, version: number): Document<T>
 export declare function parsePackageKey(key: string): PackageId;
 export declare function toPackageKey(name: string, majorVersion: string): string;
 export declare function toPackageKey(packageId: PackageId): string;
+export declare function deserializeSummary(doc: QueryResult<JSONDocument<PackageBenchmarkSummary>>): QueryResult<Document<PackageBenchmarkSummary>>;
+export declare function getSourceVersion(cwd: string): string;

@@ -34,6 +34,11 @@ export interface PackageBenchmarkSummary {
     completions: StatSummary<LanguageServiceBenchmark>;
     quickInfo: StatSummary<LanguageServiceBenchmark>;
 }
+export interface TypeScriptComparisonRun {
+    compareAgainstPackageBenchmarkId: string;
+    sourceVersion: string;
+    headBenchmark: PackageBenchmarkSummary;
+}
 export interface StatSummary<T> {
     mean: number;
     median: number;
@@ -72,13 +77,16 @@ export interface Document<T> {
     system: SystemInfo;
     body: T;
 }
-declare type Serializable<T extends {}> = {
-    [K in keyof T]: T[K] extends string ? string : T[K] extends number ? number : T[K] extends boolean ? boolean : T[K] extends Date ? string : T[K] extends ReadonlyArray<infer U> ? Serializable<U>[] : T[K] extends {} ? Serializable<T> : never;
+declare type Serialized<T extends {}> = {
+    [K in keyof T]: T[K] extends string ? string : T[K] extends number ? number : T[K] extends boolean ? boolean : T[K] extends Date ? string : T[K] extends ReadonlyArray<infer U> ? Serialized<U>[] : T[K] extends {} ? Serialized<T[K]> : never;
 };
 export interface JSONDocument<T extends {}> {
     version: number;
     createdAt: string;
     system: SystemInfo;
-    body: Serializable<T>;
+    body: Serialized<T>;
 }
+export declare type QueryResult<T extends {}> = T & {
+    id: string;
+};
 export {};
