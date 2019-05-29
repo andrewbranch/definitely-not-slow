@@ -3,13 +3,14 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { promisify } from 'util';
 import { PackageId, AllPackages } from "types-publisher/bin/lib/packages";
-import { getDatabase, DatabaseAccessLevel, Document, PackageBenchmarkSummary, getChangedPackages, packageIdsAreEqual, getParsedPackages, config, toPackageKey, parsePackageKey, createDocument, Args, assertString, withDefault, assertNumber, assertDefined, assertBoolean, getSystemInfo, systemsAreCloseEnough, JSONDocument } from "../common";
+import { getDatabase, DatabaseAccessLevel, Document, PackageBenchmarkSummary, getChangedPackages, packageIdsAreEqual, getParsedPackages, config, toPackageKey, parsePackageKey, createDocument, Args, assertString, withDefault, assertNumber, assertDefined, assertBoolean, getSystemInfo, systemsAreCloseEnough, JSONDocument, deserializeSummary, QueryResult, TypeScriptComparisonRun, getSourceVersion } from "../common";
 import { Container, Response } from "@azure/cosmos";
 import { FS } from "types-publisher/bin/get-definitely-typed";
 import { benchmarkPackage } from "./benchmark";
 import { getTypeScript } from '../measure/getTypeScript';
 import { summarize } from '../measure';
 import { postTypeScriptComparisonResults } from '../github/postTypeScriptComparisonResult';
+import { insertDocument } from '../write';
 const writeFile = promisify(fs.writeFile);
 const currentSystem = getSystemInfo();
 
@@ -18,9 +19,9 @@ export interface CompareTypeScriptOptions {
   definitelyTypedPath: string;
   packages?: PackageId[];
   maxRunSeconds?: number;
-  typeScriptPath?: string;
+  typeScriptPath: string;
   outFile?: string;
-  groups?: { [key: string]: JSONDocument<PackageBenchmarkSummary> }[];
+  groups?: { [key: string]: QueryResult<JSONDocument<PackageBenchmarkSummary>> }[];
   agentCount?: number;
   agentIndex?: number;
   upload: boolean;
@@ -30,7 +31,7 @@ function convertArgs({ file, ...args }: Args): CompareTypeScriptOptions {
   if (file) {
     const jsonContent = require(path.resolve(assertString(file, 'file')));
     return {
-      ...convertArgs(args),
+      ...convertArgs({ ...args, ...jsonContent.options }),
       groups: jsonContent.groups,
     };
   }
@@ -44,7 +45,7 @@ function convertArgs({ file, ...args }: Args): CompareTypeScriptOptions {
     upload: assertBoolean(withDefault(args.upload, true), 'upload'),
     outFile: args.outFile ? assertString(args.outFile, 'outFile') : undefined,
     agentCount: args.agentCount ? assertNumber(args.agentCount, 'agentCount') : undefined,
-    agentIndex: args.agentIndex ? assertNumber(args.agentIndex, 'agentIndex') : undefined,
+    agentIndex: typeof args.agentIndex !== 'undefined' ? assertNumber(args.agentIndex, 'agentIndex') : undefined,
   };
 }
 
@@ -65,8 +66,12 @@ export async function compareTypeScript({
 }: CompareTypeScriptOptions) {
   await getTypeScript(compareAgainstMajorMinor);
   const getAllPackages = createGetAllPackages(definitelyTypedPath);
-  const { container } = await getDatabase(DatabaseAccessLevel.Read);
-  const priorResults = await getPackagesToTestAndPriorResults(container, compareAgainstMajorMinor, definitelyTypedPath, getAllPackages, packages)
+  const { packageBenchmarks, typeScriptComparisons } = await getDatabase(upload ? DatabaseAccessLevel.Write : DatabaseAccessLevel.Read);
+  const agentIndex = groups && assertDefined(opts.agentIndex, 'agentIndex');
+  const priorResults = groups
+    ? new Map<string, QueryResult<Document<PackageBenchmarkSummary>>>(Object.keys(groups[agentIndex!]).map(key => [key, deserializeSummary(groups[agentIndex!][key])] as const))
+    : await getPackagesToTestAndPriorResults(packageBenchmarks, compareAgainstMajorMinor, definitelyTypedPath, getAllPackages, packages);
+
   if (outFile) {
     const agentCount = assertDefined(opts.agentCount, 'agentCount');
     const fileContent = JSON.stringify({
@@ -86,7 +91,7 @@ export async function compareTypeScript({
         }
         return groups;
       }, [] as { [key: string]: Document<PackageBenchmarkSummary> }[]),
-    });
+    }, undefined, 2);
 
     return writeFile(outFile, fileContent, 'utf8');
   }
@@ -96,9 +101,10 @@ export async function compareTypeScript({
   const comparisons: [Document<PackageBenchmarkSummary>, Document<PackageBenchmarkSummary>][] = [];
   for (const packageKey of packagesToTest) {
     const { name, majorVersion } = parsePackageKey(packageKey);
-    let priorResult = priorResults.get(packageKey);
+    let priorResult: Document<PackageBenchmarkSummary> | QueryResult<Document<PackageBenchmarkSummary>> | undefined = priorResults.get(packageKey);
+    let priorResultId = priorResult && 'id' in priorResult && priorResult.id;
     if (!priorResult) {
-      priorResult = createDocument(summarize((await benchmarkPackage(name, majorVersion.toString(), now, {
+      const { id, summary } = await benchmarkPackage(name, majorVersion.toString(), now, {
         definitelyTypedPath,
         iterations: config.benchmarks.languageServiceIterations,
         tsVersion: compareAgainstMajorMinor,
@@ -108,10 +114,14 @@ export async function compareTypeScript({
         upload,
         installTypeScript: false,
         maxRunSeconds,
-      }))[0]), config.database.packageBenchmarksDocumentSchemaVersion);
+      });
+      priorResult = {
+        id,
+        ...createDocument(summary, config.database.packageBenchmarksDocumentSchemaVersion)
+      };
     }
 
-    const currentResult = createDocument(summarize((await benchmarkPackage(name, majorVersion.toString(), now, {
+    const currentResult = createDocument((await benchmarkPackage(name, majorVersion.toString(), now, {
       definitelyTypedPath,
       iterations: config.benchmarks.languageServiceIterations,
       tsVersion: 'local',
@@ -122,9 +132,20 @@ export async function compareTypeScript({
       upload: false,
       installTypeScript: false,
       maxRunSeconds,
-    }))[0]), config.database.packageBenchmarksDocumentSchemaVersion);
+    })).summary, config.database.packageBenchmarksDocumentSchemaVersion);
     
-    comparisons.push([priorResult, currentResult]);
+    comparisons.push([priorResult!, currentResult]);
+    if (upload && priorResultId) {
+      const comparison: TypeScriptComparisonRun = {
+        sourceVersion: getSourceVersion(typeScriptPath),
+        compareAgainstPackageBenchmarkId: priorResultId,
+        headBenchmark: currentResult.body,
+      };
+      await insertDocument(
+        comparison,
+        config.database.typeScriptComparisonsDocumentSchemaVersion,
+        typeScriptComparisons);
+    }
   }
 
   const comment = await postTypeScriptComparisonResults({ comparisons, dryRun: true });
@@ -132,7 +153,7 @@ export async function compareTypeScript({
 }
 
 async function getPackagesToTestAndPriorResults(container: Container, typeScriptVersion: string, definitelyTypedPath: string, getAllPackages: ReturnType<typeof createGetAllPackages>, packageList?: PackageId[]) {
-  const iterator: AsyncIterable<Response<Document<PackageBenchmarkSummary>>> = await container.items.query({
+  const iterator: AsyncIterable<Response<QueryResult<Document<PackageBenchmarkSummary>>>> = await container.items.query({
     query: `SELECT * FROM ${config.database.packageBenchmarksContainerId} b` +
     `  WHERE b.body.typeScriptVersionMajorMinor = @typeScriptVersion` +
     (packageList ?
@@ -146,7 +167,7 @@ async function getPackagesToTestAndPriorResults(container: Container, typeScript
   }).getAsyncIterator();
 
   const packageKeys = packageList && packageList.map(toPackageKey);
-  const packages = new Map<string, Document<PackageBenchmarkSummary>>();
+  const packages = new Map<string, QueryResult<Document<PackageBenchmarkSummary>>>();
   for await (const { result } of iterator) {
     if (!result) continue;
     const packageKey = toPackageKey(result.body.packageName, result.body.packageVersion);
