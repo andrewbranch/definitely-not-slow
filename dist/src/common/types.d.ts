@@ -13,6 +13,7 @@ export interface PackageBenchmark {
     typeScriptVersion: string;
     typeScriptVersionMajorMinor: string;
     typeCount: number;
+    memoryUsage: number;
     benchmarkDuration: number;
     relationCacheSizes?: RelationCacheSizes;
     testIdentifierCount: number;
@@ -27,6 +28,7 @@ export interface PackageBenchmarkSummary {
     typeScriptVersionMajorMinor: string;
     sourceVersion: string;
     typeCount: number;
+    memoryUsage: number;
     benchmarkDuration: number;
     relationCacheSizes?: RelationCacheSizes;
     testIdentifierCount: number;
@@ -70,6 +72,7 @@ export interface SystemInfo {
     release: string;
     totalmem: number;
     hash: string;
+    nodeVersion: string;
 }
 export interface Document<T> {
     version: number;
