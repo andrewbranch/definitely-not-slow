@@ -25,19 +25,24 @@ const logging_1 = require("types-publisher/bin/util/logging");
 const common_1 = require("../common");
 const common_2 = require("types-publisher/bin/lib/common");
 const parse_definitions_1 = __importDefault(require("types-publisher/bin/parse-definitions"));
+const utils_1 = require("./utils");
+let parsedSourceVersion;
 function getParsedPackages(definitelyTypedPath) {
     return __awaiter(this, void 0, void 0, function* () {
+        const currentSourceVersion = yield utils_1.getSourceVersion(definitelyTypedPath);
         const definitelyTypedFS = get_definitely_typed_1.getLocallyInstalledDefinitelyTyped(definitelyTypedPath);
         const isDebugging = process.execArgv.some(arg => arg.startsWith('--inspect'));
-        if (process.env.NODE_ENV === 'production' || !(yield common_1.pathExists(common_2.dataFilePath(packages_1.typesDataFilename)))) {
+        const needsReparse = !parsedSourceVersion || parsedSourceVersion !== currentSourceVersion;
+        if (process.env.NODE_ENV === 'production' || needsReparse || !(yield common_1.pathExists(common_2.dataFilePath(packages_1.typesDataFilename)))) {
             yield parse_definitions_1.default(definitelyTypedFS, isDebugging ? undefined : {
                 definitelyTypedPath,
                 nProcesses: os.cpus().length,
             }, logging_1.consoleLogger);
+            parsedSourceVersion = currentSourceVersion;
         }
         const allPackages = yield packages_1.AllPackages.read(definitelyTypedFS);
         return { definitelyTypedFS, allPackages };
     });
 }
 exports.getParsedPackages = getParsedPackages;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZ2V0UGFyc2VkUGFja2FnZXMuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi9zcmMvY29tbW9uL2dldFBhcnNlZFBhY2thZ2VzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBQUEsdUNBQXlCO0FBQ3pCLCtEQUFrRjtBQUNsRixtRkFBa0c7QUFDbEcsOERBQWlFO0FBQ2pFLHNDQUF1QztBQUN2QywyREFBOEQ7QUFDOUQsOEZBQXFFO0FBRXJFLFNBQXNCLGlCQUFpQixDQUFDLG1CQUEyQjs7UUFJakUsTUFBTSxpQkFBaUIsR0FBRyx5REFBa0MsQ0FBQyxtQkFBbUIsQ0FBQyxDQUFDO1FBQ2xGLE1BQU0sV0FBVyxHQUFHLE9BQU8sQ0FBQyxRQUFRLENBQUMsSUFBSSxDQUFDLEdBQUcsQ0FBQyxFQUFFLENBQUMsR0FBRyxDQUFDLFVBQVUsQ0FBQyxXQUFXLENBQUMsQ0FBQyxDQUFDO1FBQzlFLElBQUksT0FBTyxDQUFDLEdBQUcsQ0FBQyxRQUFRLEtBQUssWUFBWSxJQUFJLENBQUMsQ0FBQyxNQUFNLG1CQUFVLENBQUMscUJBQVksQ0FBQyw0QkFBaUIsQ0FBQyxDQUFDLENBQUMsRUFBRTtZQUNqRyxNQUFNLDJCQUFnQixDQUFDLGlCQUFpQixFQUFFLFdBQVcsQ0FBQyxDQUFDLENBQUMsU0FBUyxDQUFDLENBQUMsQ0FBQztnQkFDbEUsbUJBQW1CO2dCQUNuQixVQUFVLEVBQUUsRUFBRSxDQUFDLElBQUksRUFBRSxDQUFDLE1BQU07YUFDN0IsRUFBRSx1QkFBYSxDQUFDLENBQUM7U0FDbkI7UUFDRCxNQUFNLFdBQVcsR0FBRyxNQUFNLHNCQUFXLENBQUMsSUFBSSxDQUFDLGlCQUFpQixDQUFDLENBQUM7UUFDOUQsT0FBTyxFQUFFLGlCQUFpQixFQUFFLFdBQVcsRUFBRSxDQUFDO0lBQzVDLENBQUM7Q0FBQTtBQWRELDhDQWNDIn0=
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZ2V0UGFyc2VkUGFja2FnZXMuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi9zcmMvY29tbW9uL2dldFBhcnNlZFBhY2thZ2VzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBQUEsdUNBQXlCO0FBQ3pCLCtEQUFrRjtBQUNsRixtRkFBa0c7QUFDbEcsOERBQWlFO0FBQ2pFLHNDQUF1QztBQUN2QywyREFBOEQ7QUFDOUQsOEZBQXFFO0FBQ3JFLG1DQUEyQztBQUUzQyxJQUFJLG1CQUF1QyxDQUFDO0FBQzVDLFNBQXNCLGlCQUFpQixDQUFDLG1CQUEyQjs7UUFJakUsTUFBTSxvQkFBb0IsR0FBRyxNQUFNLHdCQUFnQixDQUFDLG1CQUFtQixDQUFDLENBQUM7UUFDekUsTUFBTSxpQkFBaUIsR0FBRyx5REFBa0MsQ0FBQyxtQkFBbUIsQ0FBQyxDQUFDO1FBQ2xGLE1BQU0sV0FBVyxHQUFHLE9BQU8sQ0FBQyxRQUFRLENBQUMsSUFBSSxDQUFDLEdBQUcsQ0FBQyxFQUFFLENBQUMsR0FBRyxDQUFDLFVBQVUsQ0FBQyxXQUFXLENBQUMsQ0FBQyxDQUFDO1FBQzlFLE1BQU0sWUFBWSxHQUFHLENBQUMsbUJBQW1CLElBQUksbUJBQW1CLEtBQUssb0JBQW9CLENBQUM7UUFDMUYsSUFBSSxPQUFPLENBQUMsR0FBRyxDQUFDLFFBQVEsS0FBSyxZQUFZLElBQUksWUFBWSxJQUFJLENBQUMsQ0FBQyxNQUFNLG1CQUFVLENBQUMscUJBQVksQ0FBQyw0QkFBaUIsQ0FBQyxDQUFDLENBQUMsRUFBRTtZQUNqSCxNQUFNLDJCQUFnQixDQUFDLGlCQUFpQixFQUFFLFdBQVcsQ0FBQyxDQUFDLENBQUMsU0FBUyxDQUFDLENBQUMsQ0FBQztnQkFDbEUsbUJBQW1CO2dCQUNuQixVQUFVLEVBQUUsRUFBRSxDQUFDLElBQUksRUFBRSxDQUFDLE1BQU07YUFDN0IsRUFBRSx1QkFBYSxDQUFDLENBQUM7WUFDbEIsbUJBQW1CLEdBQUcsb0JBQW9CLENBQUM7U0FDNUM7UUFDRCxNQUFNLFdBQVcsR0FBRyxNQUFNLHNCQUFXLENBQUMsSUFBSSxDQUFDLGlCQUFpQixDQUFDLENBQUM7UUFDOUQsT0FBTyxFQUFFLGlCQUFpQixFQUFFLFdBQVcsRUFBRSxDQUFDO0lBQzVDLENBQUM7Q0FBQTtBQWpCRCw4Q0FpQkMifQ==
