@@ -9,4 +9,4 @@ export interface CompareOptions {
     maxRunSeconds?: number;
 }
 export declare function compare(args: Args): Promise<void>;
-export declare function compareBenchmarks({ allPackages, definitelyTypedPath, typeScriptVersionMajorMinor, packageName, packageVersion, maxRunSeconds, }: CompareOptions): Promise<[Document<PackageBenchmarkSummary>, Document<PackageBenchmarkSummary>]>;
+export declare function compareBenchmarks({ allPackages, definitelyTypedPath, typeScriptVersionMajorMinor, packageName, packageVersion, maxRunSeconds, }: CompareOptions): Promise<[Document<PackageBenchmarkSummary> | undefined, Document<PackageBenchmarkSummary>]>;

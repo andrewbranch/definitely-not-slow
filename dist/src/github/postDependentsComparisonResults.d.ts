@@ -1,5 +1,5 @@
 import { PackageBenchmarkSummary, Document } from '../common';
-declare type BeforeAndAfter = [Document<PackageBenchmarkSummary>, Document<PackageBenchmarkSummary>];
+declare type BeforeAndAfter = [Document<PackageBenchmarkSummary> | undefined, Document<PackageBenchmarkSummary>];
 export interface PostDependentsComparisonResultOptions {
     comparisons: BeforeAndAfter[];
     dryRun: boolean;

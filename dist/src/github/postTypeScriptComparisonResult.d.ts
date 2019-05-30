@@ -1,4 +1,4 @@
-import { PackageBenchmarkSummary, Document } from "../common";
+import { PackageBenchmarkSummary, Document } from '../common';
 declare type BeforeAndAfter = [Document<PackageBenchmarkSummary>, Document<PackageBenchmarkSummary>];
 export interface PostTypeScriptComparisonResultsOptions {
     comparisons: BeforeAndAfter[];

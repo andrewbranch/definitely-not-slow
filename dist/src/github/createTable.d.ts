@@ -1,2 +1,3 @@
 import { PackageBenchmarkSummary, Document } from '../common';
-export declare function createTable(a: Document<PackageBenchmarkSummary>, b: Document<PackageBenchmarkSummary>, leftTitle: string, rightTitle: string): string;
+export declare function createComparisonTable(before: Document<PackageBenchmarkSummary>, after: Document<PackageBenchmarkSummary>, beforeTitle: string, afterTitle: string): string;
+export declare function createSingleRunTable(benchmark: Document<PackageBenchmarkSummary>): string;
