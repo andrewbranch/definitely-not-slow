@@ -33,3 +33,4 @@ export declare function toPackageKey(name: string, majorVersion: string): string
 export declare function toPackageKey(packageId: PackageId): string;
 export declare function deserializeSummary(doc: QueryResult<JSONDocument<PackageBenchmarkSummary>>): QueryResult<Document<PackageBenchmarkSummary>>;
 export declare function getSourceVersion(cwd: string): string;
+export declare function shuffle<T>(array: readonly T[]): T[];

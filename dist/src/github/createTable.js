@@ -111,7 +111,7 @@ function createSingleRunRow(title, benchmark, getValue, formatOptions = {}) {
     ];
 }
 function indent(text, level) {
-    return '&nbsp;'.repeat(2 * level) + text;
+    return '&nbsp;'.repeat(4 * level) + text;
 }
 function formatDiff(percentDiff, precision) {
     const percentString = `${percentDiff > 0 ? '+' : ''}${format(percentDiff * 100, precision)}%`;
