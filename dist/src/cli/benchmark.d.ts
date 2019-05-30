@@ -15,6 +15,7 @@ export interface BenchmarkPackageOptions {
     failOnErrors?: boolean;
     installTypeScript?: boolean;
     localTypeScriptPath?: string;
+    reverse?: boolean;
 }
 export declare function benchmark(args: Args): Promise<void>;
 export declare function benchmarkPackage(packageName: string, packageVersion: string, batchRunStart: Date, options: BenchmarkPackageOptions): Promise<{
