@@ -1046,11 +1046,11 @@
         "signature": "f13d5805bab081a24fbb09b4ae551abac0ebec9c555708776e613bb42a25fc05"
       },
       "/users/anbranc/developer/microsoft/definitely-not-slow/src/github/metrics.ts": {
-        "version": "a1e991e4b4a50ff3041c3c142e317ef6ef7a42f67a4291cd8b1df23b830fc956",
-        "signature": "cd160b21e71c72c053d33b27741791b9df683e09d152adddb7a303419ec45324"
+        "version": "62532313a4dce2ac1cd8dd2869facfe6a82d9d96c3494ae4b232d94d501144d2",
+        "signature": "8e96724f956cda83c20b0a7a5a97940b2fec5fbc2369f8c9922c17c4296fe501"
       },
       "/users/anbranc/developer/microsoft/definitely-not-slow/src/github/createtable.ts": {
-        "version": "58921651a3867c2d7e363d17b9150a64267bc4499b26d20de5e42078c3a70623",
+        "version": "7afb72f50f80effcda5c5b9e0dba786e63800efcec503183a0406cda936c8c3b",
         "signature": "cb77fd3d5ac628974b51cd9688c5258373a27d794d5a831d0b5049b1cef44635"
       },
       "/users/anbranc/developer/microsoft/definitely-not-slow/src/github/createtableswithanalysesmessage.ts": {
@@ -4855,8 +4855,6 @@
       "/users/anbranc/developer/microsoft/definitely-not-slow/src/cli/benchmark.ts",
       "/users/anbranc/developer/microsoft/definitely-not-slow/node_modules/@octokit/rest/index.d.ts",
       "/users/anbranc/developer/microsoft/definitely-not-slow/src/github/getoctokit.ts",
-      "/users/anbranc/developer/microsoft/definitely-not-slow/src/github/metrics.ts",
-      "/users/anbranc/developer/microsoft/definitely-not-slow/src/github/createtable.ts",
       "/users/anbranc/developer/microsoft/definitely-not-slow/src/github/postinitialcomparisonresults.ts",
       "/users/anbranc/developer/microsoft/definitely-not-slow/src/github/postdependentscomparisonresults.ts",
       "/users/anbranc/developer/microsoft/definitely-not-slow/src/cli/compare.ts",
@@ -4868,6 +4866,8 @@
       "/users/anbranc/developer/microsoft/definitely-not-slow/src/measure/types/dtslint.d.ts",
       "/users/anbranc/developer/microsoft/definitely-not-slow/src/measure/types/node.d.ts",
       "/users/anbranc/developer/microsoft/definitely-not-slow/node_modules/@types/tar-stream/index.d.ts",
+      "/users/anbranc/developer/microsoft/definitely-not-slow/src/github/metrics.ts",
+      "/users/anbranc/developer/microsoft/definitely-not-slow/src/github/createtable.ts",
       "/users/anbranc/developer/microsoft/definitely-not-slow/src/github/createtableswithanalysesmessage.ts"
     ]
   },
