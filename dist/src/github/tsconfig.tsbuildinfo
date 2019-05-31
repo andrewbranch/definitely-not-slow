@@ -978,7 +978,7 @@
         "signature": "2cfccf6c8208ad9a7eb3d274096a453c9ca28417fa918f12983f1a6ee6a10f2e"
       },
       "/users/anbranc/developer/microsoft/definitely-not-slow/src/github/createtable.ts": {
-        "version": "afaa4bce189d6cbf98ad323de0b2dc64761393a54cfc4afc832dbb9b9b801173",
+        "version": "774ca27748e1233642866bde81b262c39590d06c49ea776df9f53aa16805ee9f",
         "signature": "cb77fd3d5ac628974b51cd9688c5258373a27d794d5a831d0b5049b1cef44635"
       },
       "/users/anbranc/developer/microsoft/definitely-not-slow/src/github/createtableswithanalysesmessage.ts": {
@@ -4837,7 +4837,7 @@
       "/users/anbranc/developer/microsoft/definitely-not-slow/src/common/getparsedpackages.ts",
       "/users/anbranc/developer/microsoft/definitely-not-slow/src/common/index.ts",
       "/users/anbranc/developer/microsoft/definitely-not-slow/src/measure/utils.ts",
-      "/users/anbranc/developer/microsoft/definitely-not-slow/src/github/createtable.ts",
+      "/users/anbranc/developer/microsoft/definitely-not-slow/src/github/metrics.ts",
       "/users/anbranc/developer/microsoft/definitely-not-slow/src/github/createtableswithanalysesmessage.ts",
       "/users/anbranc/developer/microsoft/definitely-not-slow/node_modules/@octokit/rest/index.d.ts",
       "/users/anbranc/developer/microsoft/definitely-not-slow/src/github/getoctokit.ts",
@@ -4868,7 +4868,7 @@
       "/users/anbranc/developer/microsoft/definitely-not-slow/src/measure/types/dtslint.d.ts",
       "/users/anbranc/developer/microsoft/definitely-not-slow/src/measure/types/node.d.ts",
       "/users/anbranc/developer/microsoft/definitely-not-slow/node_modules/@types/tar-stream/index.d.ts",
-      "/users/anbranc/developer/microsoft/definitely-not-slow/src/github/metrics.ts"
+      "/users/anbranc/developer/microsoft/definitely-not-slow/src/github/createtable.ts"
     ]
   },
   "version": "3.5.1"
