@@ -3,12 +3,13 @@ export interface FormatOptions {
     noDiff?: boolean;
     precision?: number;
     indent?: number;
+    higherIsBetter?: boolean;
+    includeEmoji?: boolean;
 }
 export interface Metric {
     columnName: string;
     sentenceName: string;
     isUninteresting?: boolean;
-    higherIsBetter?: boolean;
     formatOptions?: FormatOptions;
     getValue: (x: Document<PackageBenchmarkSummary>) => number | undefined;
 }
