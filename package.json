@@ -7,13 +7,17 @@
     "build": "tsc -b .",
     "test": "jest",
     "cli": "node dist/src/cli/index.js",
-    "push-production": "npm run build && npm version patch && git checkout production && git merge -m 'Merge master into production' master && npm run build && git add dist && git commit -m 'Update dist' && git push -u origin production && git checkout -"
+    "git-config": "test \"$GITHUB_WORKFLOW\" && git remote -v && git config --global user.name \"$GH_USER\" && git config --global user.email \"$GH_EMAIL\" || echo ''",
+    "prepush-production": "npm run git-config",
+    "push-production": "git checkout production && git merge -m 'Merge master into production' master && npm run build && git add dist && git commit -m 'Update dist' && git push -u origin production && git checkout -",
+    "prepush-beta": "npm run git-config",
+    "push-beta": "git checkout beta && git merge -m 'Merge master into beta' master && npm run build && git add dist && git commit -m 'Update dist' && git push -u origin beta && git checkout -"
   },
   "author": "",
   "license": "UNLICENSED",
   "devDependencies": {
     "@types/jest": "^24.0.13",
-    "@types/node": "^11.13.12",
+    "@types/node": "^12.0.4",
     "jest": "^24.8.0",
     "ts-jest": "^24.0.2"
   },
