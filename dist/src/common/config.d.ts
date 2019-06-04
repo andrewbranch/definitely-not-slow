@@ -23,7 +23,7 @@ export declare const config: {
     };
     comparison: {
         percentDiffWarningThreshold: number;
-        percentDiffSevereThreshold: number;
-        percentDiffGoldStarThreshold: number;
+        percentDiffAlertThreshold: number;
+        percentDiffAwesomeThreshold: number;
     };
 };
