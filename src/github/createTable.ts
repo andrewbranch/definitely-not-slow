@@ -1,13 +1,15 @@
 import table from 'markdown-table';
-import { PackageBenchmarkSummary, Document, config, getPercentDiff } from '../common';
+import { PackageBenchmarkSummary, Document, config, getPercentDiff, compact, supportsMemoryUsage } from '../common';
 import { metrics, Metric, FormatOptions, SignificanceLevel } from '../analysis';
 import { assertNever } from 'types-publisher/bin/util/util';
 
 export function createComparisonTable(before: Document<PackageBenchmarkSummary>, after: Document<PackageBenchmarkSummary>, beforeTitle: string, afterTitle: string) {
-  return table([
+  return table(compact([
     ['', beforeTitle, afterTitle, 'diff'],
     ['**Batch compilation**'],
-    // createComparisonRowFromMetric(metrics.memoryUsage, before, after),
+    supportsMemoryUsage(before) && supportsMemoryUsage(after)
+      ? createComparisonRowFromMetric(metrics.memoryUsage, before, after)
+      : undefined,
     createComparisonRowFromMetric(metrics.typeCount, before, after),
     createComparisonRowFromMetric(metrics.assignabilityCacheSize, before, after),
     createComparisonRowFromMetric(metrics.subtypeCacheSize, before, after),
@@ -36,17 +38,21 @@ export function createComparisonTable(before: Document<PackageBenchmarkSummary>,
       x.body.sourceVersion,
       x.body.quickInfo.worst.fileName,
       x.body.quickInfo.worst.line), undefined, { indent: 1 }),
-    [],
-    ['**System information**'],
-    createComparisonRow('Node version', before, after, x => x.system.nodeVersion),
-    createComparisonRow('CPU count', before, after, x => x.system.cpus.length, undefined, { precision: 0 }),
-    createComparisonRow('CPU speed', before, after, x => `${x.system.cpus[0].speed / 1000} GHz`),
-    createComparisonRow('CPU model', before, after, x => x.system.cpus[0].model),
-    createComparisonRow('CPU Architecture', before, after, x => x.system.arch),
-    createComparisonRow('Memory', before, after, x => `${format(x.system.totalmem / 2 ** 30)} GiB`),
-    createComparisonRow('Platform', before, after, x => x.system.platform),
-    createComparisonRow('Release', before, after, x => x.system.release),
-  ]);
+
+    // Only show system info if they’re not identical
+    ...(before.system.hash === after.system.hash ? [] : [
+      [],
+      ['**System information**'],
+      createComparisonRow('Node version', before, after, x => x.system.nodeVersion),
+      createComparisonRow('CPU count', before, after, x => x.system.cpus.length, undefined, { precision: 0 }),
+      createComparisonRow('CPU speed', before, after, x => `${x.system.cpus[0].speed / 1000} GHz`),
+      createComparisonRow('CPU model', before, after, x => x.system.cpus[0].model),
+      createComparisonRow('CPU Architecture', before, after, x => x.system.arch),
+      createComparisonRow('Memory', before, after, x => `${format(x.system.totalmem / 2 ** 30)} GiB`),
+      createComparisonRow('Platform', before, after, x => x.system.platform),
+      createComparisonRow('Release', before, after, x => x.system.release),
+    ]),
+  ]));
 }
 
 export function createSingleRunTable(benchmark: Document<PackageBenchmarkSummary>) {

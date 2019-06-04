@@ -1,22 +1,38 @@
 import { createComparisonTable, createSingleRunTable } from './createTable';
-import { PackageBenchmarkSummary, systemsAreCloseEnough, Document, compact } from '../common';
-import { getInterestingMetrics, SignificanceLevel } from '../analysis';
+import { PackageBenchmarkSummary, systemsAreCloseEnough, Document, compact, toPackageKey } from '../common';
+import { getInterestingMetrics, SignificanceLevel, ComparedMetric } from '../analysis';
 
 export function createTablesWithAnalysesMessage(pairs: [Document<PackageBenchmarkSummary> | undefined, Document<PackageBenchmarkSummary>][], prNumber: number, alwaysWriteHeading = false) {
-  return pairs.map(([before, after]) => compact([
-    pairs.length > 1 || alwaysWriteHeading ? `### ${after.body.packageName}/v${after.body.packageVersion}` : undefined,
-    getIntroMessage(before, after),
-    ``,
-    getLanguageServiceCrashMessage(after),
-    ``,
-    before
-      ? createComparisonTable(before, after, getBeforeTitle(before, after), getAfterTitle(before, after, prNumber))
-      : createSingleRunTable(after),
-    ``,
-    before && getSystemMismatchMessage(before, after),
-    ``,
-    before && getInterestingMetricsMessage(before, after),
-  ]).join('\n')).join('\n\n');
+  return pairs.map(([before, after]) => {
+    const interestingMetrics = before && getInterestingMetrics(before, after);
+    const shouldCollapseDetails = !interestingMetrics || !interestingMetrics.length;
+    const messageBody = [
+      before
+        ? createComparisonTable(before, after, getBeforeTitle(before, after), getAfterTitle(before, after, prNumber))
+        : createSingleRunTable(after),
+      ``,
+      before && getSystemMismatchMessage(before, after),
+    ].join('\n');
+
+    return compact([
+      pairs.length > 1 || alwaysWriteHeading ? `### ${after.body.packageName}/v${after.body.packageVersion}` : undefined,
+      getIntroMessage(before, after),
+      ``,
+      getLanguageServiceCrashMessage(after),
+      ``,
+      shouldCollapseDetails ? details(messageBody, getDetailsSummaryTitle(pairs.length, after)) : messageBody,
+      ``,
+      interestingMetrics && getInterestingMetricsMessage(interestingMetrics),
+    ]).join('\n');
+  }).join('\n\n');
+}
+
+function getDetailsSummaryTitle(comparisonsCount: number, benchmark: Document<PackageBenchmarkSummary>) {
+  const title = '**Comparison details**';
+  if (comparisonsCount > 1) {
+    return title + ` for ${toPackageKey(benchmark.body.packageName, benchmark.body.packageVersion)} 📊`;
+  }
+  return `${title} 📊`;
 }
 
 function getBeforeTitle(before: Document<PackageBenchmarkSummary>, after: Document<PackageBenchmarkSummary>) {
@@ -58,8 +74,7 @@ function getSystemMismatchMessage(a: Document<PackageBenchmarkSummary>, b: Docum
     : undefined;
 }
 
-function getInterestingMetricsMessage(a: Document<PackageBenchmarkSummary>, b: Document<PackageBenchmarkSummary>) {
-  const interestingMetrics = getInterestingMetrics(a, b);
+function getInterestingMetricsMessage(interestingMetrics: readonly ComparedMetric[]) {
   if (!interestingMetrics.length) {
     return `It looks like nothing changed too much. I’m pretty lenient since I’m still an experiment, so take a look anyways and make sure nothing looks out of place.`;
   }
@@ -76,7 +91,15 @@ function getInterestingMetricsMessage(a: Document<PackageBenchmarkSummary>, b: D
     + ` to make sure everything looks ok.`;
 }
 
-
+function details(details: string, summary?: string) {
+  return compact([
+    '<details>',
+    summary && `<summary>${summary}</summary>`,
+    '',
+    details,
+    `</details>`
+  ]).join('\n');
+}
 
 function formatListForSentence(items: string[]) {
   return items.map((item, index) => {
@@ -84,8 +107,4 @@ function formatListForSentence(items: string[]) {
     const isLast = index === items.length - 1;
     return !isFirst && isLast ? `and ${item}` : item;
   }).join(items.length > 2 ? ', ' : ' ');
-}
-
-function isNumber(n: any): n is number {
-  return typeof n === 'number' && !isNaN(n);
 }
