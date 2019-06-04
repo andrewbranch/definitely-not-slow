@@ -5,5 +5,5 @@ export interface PostInitialComparisonResultsOptions {
     dependentCount: number;
     dryRun: boolean;
 }
-export declare function postInitialComparisonResults({ comparisons, dependentCount, dryRun, }: PostInitialComparisonResultsOptions): Promise<string>;
+export declare function postInitialComparisonResults({ comparisons, dependentCount, dryRun, }: PostInitialComparisonResultsOptions): Promise<string | undefined>;
 export {};

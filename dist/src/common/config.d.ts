@@ -14,6 +14,7 @@ export declare const config: {
     };
     github: {
         userAgent: string;
+        typeScriptBotUsername: string;
         readonly typeScriptBotAuthToken: string;
         commonParams: {
             owner: string;
