@@ -138,7 +138,7 @@
         "signature": "66e3274e1826bf4616ad605aae64ac49e0cfd39213db7f33ad5fc867d3d3af8d"
       },
       "/github/workspace/src/common/config.ts": {
-        "version": "fe828e5764dedfcc1d11e928ba89879554ded7f891818e9f28b13d4050903572",
+        "version": "d343e8a9b954d8b832d68d50ed43e7d2f060056b98e3ff0465351488b6405621",
         "signature": "d5d03cda662a78054e71bd3d494fe3d9bedab19d1d08e40a65b35c629b67d846"
       },
       "/github/workspace/node_modules/@azure/cosmos/lib/src/documents/ConnectionMode.d.ts": {
@@ -954,8 +954,8 @@
         "signature": "5622cfaf34f2f6be1cbeb2ab90474f336ab65e77d303e7256e2a7dd637fa69a5"
       },
       "/github/workspace/src/common/types.ts": {
-        "version": "4872c6b89d02c43239695fe222da0127d6b7363acff6a2d2d20ac6fb2a75ee9c",
-        "signature": "0f20cf0fc360187c8d2f78a805bbf75ebe93940ea0e08c3455224e2fa5a63336"
+        "version": "89826bf29f6d94569d54390123c0cd490795059ac7dfff4d55567d54f15760fc",
+        "signature": "56ba6714fcc5045e46405e7b0fcb7533b8ea27ba36ee3fcea7fd787fb86c4297"
       },
       "/github/workspace/node_modules/types-publisher/bin/tester/test-runner.d.ts": {
         "version": "a2f5fb81c80c76839bd744243f6e5decaa63eb1b70a62025c9b15d1b62e6f2a0",
@@ -982,19 +982,19 @@
         "signature": "b3bb7e249c4ec2e085744c81da0408ac07812f111f1916017b04573934d0f73c"
       },
       "/github/workspace/src/measure/utils.ts": {
-        "version": "eca68954741b7e4a56e3e07192e97520fc08e582cad7e052d5391b9bc07d83ec",
-        "signature": "a47492d66356041610daaf59fdf627afe689c5490df26a6822e91192eb46000e"
+        "version": "26e06b484c81165fd00ed9937eb244b3fb5d77f0665b866eb1ebb034093a8eb4",
+        "signature": "78398036059c5d80d70cb522aa46ffdfbfc462340aa4cc59d8f756f006720461"
       },
       "/github/workspace/src/analysis/metrics.ts": {
-        "version": "4104c22580f4eef1c22bfe27b6f9cb6d4c8a94e117123ab4e0076b6b2134f63a",
-        "signature": "e5d12115be351a310c0e5bcd92d608897957ba83c23518053cdbb5274a5cd490"
+        "version": "4ea9b22b871b549eb9349fcafaaf253a0ba8cb65bedb8f14d99084735178b88d",
+        "signature": "41ad7db8983b7607ce581edc7fea05b2c52d5efa07d1e55fd997fdd200c19e6f"
       },
       "/github/workspace/src/analysis/index.ts": {
         "version": "3e6d84ba45795c67a52845c8cb738ec5c65ee48a43994475c90bbbf021a86251",
         "signature": "3e6d84ba45795c67a52845c8cb738ec5c65ee48a43994475c90bbbf021a86251"
       },
       "/github/workspace/src/github/createTable.ts": {
-        "version": "517d6fa0dafd2aa6c673231734aaf9cb0aedd85fdf4b35915b2a6edbb5ce0500",
+        "version": "4c43ee79b037bcc6e5fbf0ed43cab2c72d06051ea04e0c6dfb01a66e5d4567b9",
         "signature": "cb77fd3d5ac628974b51cd9688c5258373a27d794d5a831d0b5049b1cef44635"
       },
       "/github/workspace/src/github/createTablesWithAnalysesMessage.ts": {
@@ -1034,8 +1034,8 @@
         "signature": "ec29d9dd7bdb54fee88da3dabbf703daa26699bf9e57b633ac938c77dab55277"
       },
       "/github/workspace/src/measure/summarize.ts": {
-        "version": "dbee47f10d2f8a032ea783c4b0ade43c2b4d20c3bf9050050088acae7d04ffec",
-        "signature": "144ba6f195a1db55ad07918b2a601e801683228698289912f2b919d75a5ae798"
+        "version": "e6abe8b4f1ceb8a51366c25b1912be40b556a0c51b8e1aabcd8fedc924834a57",
+        "signature": "8db9b64530d5784fdc9d568b84600f9e15582ec2ab8f717406ff1d5de4bc637c"
       },
       "/github/workspace/node_modules/types-publisher/bin/lib/definition-parser.d.ts": {
         "version": "75db7b301c343b9b297d7517d61f8d8f3a85058f6aaaa2c0b6cbd4e8e0fec526",
@@ -1090,8 +1090,8 @@
         "signature": "904b9c7c190b425a173748738d74645c92d786e390376b34e677ea27dd724b3e"
       },
       "/github/workspace/src/cli/compare.ts": {
-        "version": "f9bd175e549fb69bcb5cbc2ce67de2b245cd90d5636788880ac32393a59c7b09",
-        "signature": "45f1c23e30c8557b2427ccf96aabfbaf5499e30e5d37cdac71774c34c1d0ebd1"
+        "version": "3514bd6d188ea4e6afb99fe60ae112c87e1f1231ef5492f50bf0eb39485808f2",
+        "signature": "f80d8b2e459b0388c19ab266aba5455ebb145ce303a82d4f9be39e3ff8a0433d"
       },
       "/github/workspace/src/cli/compareTypeScript.ts": {
         "version": "4ae51ed98beac595c5bc8579f29fad846a3ed149af36ffdd86eabe915a397545",
@@ -4665,6 +4665,9 @@
         "/github/workspace/src/common/utils.ts",
         "/github/workspace/src/common/support.ts"
       ],
+      "/github/workspace/src/github/comment.ts": [
+        "/github/workspace/node_modules/@octokit/rest/index.d.ts"
+      ],
       "/github/workspace/src/analysis/metrics.ts": [
         "/github/workspace/src/common/index.ts"
       ],
@@ -4858,9 +4861,6 @@
       "/github/workspace/node_modules/@types/yargs/index.d.ts": [
         "/github/workspace/node_modules/@types/node/util.d.ts",
         "/github/workspace/node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "/github/workspace/src/github/comment.ts": [
-        "/github/workspace/node_modules/@octokit/rest/index.d.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
@@ -5092,6 +5092,7 @@
       "/github/workspace/node_modules/@azure/cosmos/lib/src/queryMetrics/queryMetricsUtils.d.ts",
       "/github/workspace/node_modules/@azure/cosmos/lib/src/queryMetrics/index.d.ts",
       "/github/workspace/node_modules/@azure/cosmos/lib/src/index.d.ts",
+      "/github/workspace/src/common/db.ts",
       "/github/workspace/node_modules/@types/parsimmon/index.d.ts",
       "/github/workspace/node_modules/definitelytyped-header-parser/index.d.ts",
       "/github/workspace/node_modules/types-publisher/bin/util/logging.d.ts",
@@ -5100,11 +5101,7 @@
       "/github/workspace/node_modules/types-publisher/bin/lib/versions.d.ts",
       "/github/workspace/node_modules/types-publisher/bin/lib/packages.d.ts",
       "/github/workspace/node_modules/types-publisher/bin/parse-definitions.d.ts",
-      "/github/workspace/src/common/types.ts",
       "/github/workspace/node_modules/types-publisher/bin/tester/test-runner.d.ts",
-      "/github/workspace/src/common/utils.ts",
-      "/github/workspace/src/common/support.ts",
-      "/github/workspace/src/measure/utils.ts",
       "/github/workspace/src/github/types/markdown-table.d.ts",
       "/github/workspace/node_modules/typescript/lib/typescript.d.ts",
       "/github/workspace/src/measure/getTypeScript.ts",
@@ -5130,10 +5127,13 @@
       "/github/workspace/node_modules/@types/tar-stream/index.d.ts",
       "/github/workspace/node_modules/@types/yargs/index.d.ts",
       "/github/workspace/src/common/config.ts",
-      "/github/workspace/src/common/db.ts",
+      "/github/workspace/src/common/types.ts",
+      "/github/workspace/src/common/utils.ts",
       "/github/workspace/src/common/getParsedPackages.ts",
+      "/github/workspace/src/common/support.ts",
       "/github/workspace/src/common/index.ts",
       "/github/workspace/src/github/comment.ts",
+      "/github/workspace/src/measure/utils.ts",
       "/github/workspace/src/analysis/metrics.ts",
       "/github/workspace/src/analysis/index.ts",
       "/github/workspace/src/github/createTable.ts",
