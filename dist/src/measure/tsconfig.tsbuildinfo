@@ -993,14 +993,6 @@
         "version": "6009641b7758d030a6dd8d657593f2326690f10c5a8f239e0edefa992c5f2f2f",
         "signature": "e33d27ae175702fca48988f9f1f6cf874d70d5ee415e6552c9602422e0252a47"
       },
-      "/github/workspace/src/measure/utils.ts": {
-        "version": "26e06b484c81165fd00ed9937eb244b3fb5d77f0665b866eb1ebb034093a8eb4",
-        "signature": "78398036059c5d80d70cb522aa46ffdfbfc462340aa4cc59d8f756f006720461"
-      },
-      "/github/workspace/src/measure/summarize.ts": {
-        "version": "e6abe8b4f1ceb8a51366c25b1912be40b556a0c51b8e1aabcd8fedc924834a57",
-        "signature": "8db9b64530d5784fdc9d568b84600f9e15582ec2ab8f717406ff1d5de4bc637c"
-      },
       "/github/workspace/node_modules/types-publisher/bin/lib/definition-parser.d.ts": {
         "version": "75db7b301c343b9b297d7517d61f8d8f3a85058f6aaaa2c0b6cbd4e8e0fec526",
         "signature": "75db7b301c343b9b297d7517d61f8d8f3a85058f6aaaa2c0b6cbd4e8e0fec526"
@@ -1025,13 +1017,17 @@
         "version": "83d3e238119205896d4cf9a7e14d01644c911bd65f0cff03e47dc0da9eb01f83",
         "signature": "2ce8079f50f6ae939b93b36ee6947ccd4fd02ac3fb314993443059a21d18841d"
       },
+      "/github/workspace/src/measure/utils.ts": {
+        "version": "26e06b484c81165fd00ed9937eb244b3fb5d77f0665b866eb1ebb034093a8eb4",
+        "signature": "78398036059c5d80d70cb522aa46ffdfbfc462340aa4cc59d8f756f006720461"
+      },
       "/github/workspace/src/measure/printSummary.ts": {
-        "version": "4da13bdd9999510ea876cf7ddc778192ffbc625d1ae7e0ffc55e154696f03a5d",
+        "version": "6b84653f11bb0c7bb63e25e17b3e85f7a88672e236198f3c4c72524fd8734d38",
         "signature": "9e4493a105378de26543992a676f9bec6aae240aed0350afbda1a2f66425b9d1"
       },
       "/github/workspace/src/measure/index.ts": {
-        "version": "c9b0a88578ea940651a30fd1323dc3c1f6f36c21763e2d43f2bc0414b4658064",
-        "signature": "c9b0a88578ea940651a30fd1323dc3c1f6f36c21763e2d43f2bc0414b4658064"
+        "version": "2ae86e906785c26e036d99c22dd40d7c6ed1951d8976be86fbbb0d853dd4a000",
+        "signature": "2ae86e906785c26e036d99c22dd40d7c6ed1951d8976be86fbbb0d853dd4a000"
       },
       "/github/workspace/src/measure/types/dtslint.d.ts": {
         "version": "4e9377ae616e769d46565c0d179fa312c6995f7d75b992205fdfe3cf867b4aed",
@@ -1045,16 +1041,20 @@
         "version": "b21e357a61628b5a7cf4dcf9c592184593bc1b27db421e133f87c51a2320e4cb",
         "signature": "41ad7db8983b7607ce581edc7fea05b2c52d5efa07d1e55fd997fdd200c19e6f"
       },
+      "/github/workspace/src/analysis/summarizePackageBenchmark.ts": {
+        "version": "cd86f0dbc6619ae4d9063df9343581b7a5f53e0b38024e99bec3d2407655f5a3",
+        "signature": "8db9b64530d5784fdc9d568b84600f9e15582ec2ab8f717406ff1d5de4bc637c"
+      },
       "/github/workspace/src/analysis/index.ts": {
-        "version": "3e6d84ba45795c67a52845c8cb738ec5c65ee48a43994475c90bbbf021a86251",
-        "signature": "3e6d84ba45795c67a52845c8cb738ec5c65ee48a43994475c90bbbf021a86251"
+        "version": "2bfc50abc6a89aecac2e4333a39e1e7d5ecac2c7db3c5473aa2b9569baaf26fe",
+        "signature": "2bfc50abc6a89aecac2e4333a39e1e7d5ecac2c7db3c5473aa2b9569baaf26fe"
       },
       "/github/workspace/src/write/index.ts": {
         "version": "0bde18fb62e8a46ba9b66a7753f3b68676a71347a264b08ea10f1e349a57d6c4",
         "signature": "ec29d9dd7bdb54fee88da3dabbf703daa26699bf9e57b633ac938c77dab55277"
       },
       "/github/workspace/src/cli/benchmark.ts": {
-        "version": "e67938e5339ba144979467b7651a7ab225e6763f5f198dfb2a89978cdfc46498",
+        "version": "4e0c5d0be948ba9107051f9f09d18256b5b38348939f9191eb8e4977a5d61fbe",
         "signature": "f87ffd07ba160678da96729c0c641ae7d39b59103b9ace51c048d59c1821894b"
       },
       "/github/workspace/src/query/index.ts": {
@@ -2797,16 +2797,6 @@
         "/github/workspace/node_modules/typescript/lib/typescript.d.ts",
         "/github/workspace/node_modules/@types/node/ts3.2/util.d.ts"
       ],
-      "/github/workspace/src/measure/utils.ts": [
-        "/github/workspace/node_modules/@types/node/util.d.ts",
-        "/github/workspace/node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "/github/workspace/src/measure/summarize.ts": [
-        "/github/workspace/src/common/index.ts",
-        "/github/workspace/src/measure/utils.ts",
-        "/github/workspace/node_modules/@types/node/util.d.ts",
-        "/github/workspace/node_modules/@types/node/ts3.2/util.d.ts"
-      ],
       "/github/workspace/node_modules/types-publisher/bin/lib/definition-parser.d.ts": [
         "/github/workspace/node_modules/types-publisher/bin/get-definitely-typed.d.ts",
         "/github/workspace/node_modules/types-publisher/bin/lib/packages.d.ts",
@@ -2865,6 +2855,10 @@
         "/github/workspace/node_modules/@types/node/util.d.ts",
         "/github/workspace/node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "/github/workspace/src/measure/utils.ts": [
+        "/github/workspace/node_modules/@types/node/util.d.ts",
+        "/github/workspace/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "/github/workspace/src/measure/printSummary.ts": [
         "/github/workspace/node_modules/@types/node/os.d.ts",
         "/github/workspace/src/common/index.ts",
@@ -2873,7 +2867,6 @@
         "/github/workspace/node_modules/@types/node/ts3.2/util.d.ts"
       ],
       "/github/workspace/src/measure/index.ts": [
-        "/github/workspace/src/measure/summarize.ts",
         "/github/workspace/src/measure/measurePerf.ts",
         "/github/workspace/src/measure/printSummary.ts",
         "/github/workspace/node_modules/@types/node/util.d.ts",
@@ -2893,8 +2886,15 @@
         "/github/workspace/node_modules/@types/node/util.d.ts",
         "/github/workspace/node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "/github/workspace/src/analysis/summarizePackageBenchmark.ts": [
+        "/github/workspace/src/common/index.ts",
+        "/github/workspace/src/measure/utils.ts",
+        "/github/workspace/node_modules/@types/node/util.d.ts",
+        "/github/workspace/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "/github/workspace/src/analysis/index.ts": [
         "/github/workspace/src/analysis/metrics.ts",
+        "/github/workspace/src/analysis/summarizePackageBenchmark.ts",
         "/github/workspace/node_modules/@types/node/util.d.ts",
         "/github/workspace/node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -2912,6 +2912,7 @@
         "/github/workspace/src/write/index.ts",
         "/github/workspace/src/measure/index.ts",
         "/github/workspace/node_modules/types-publisher/bin/lib/packages.d.ts",
+        "/github/workspace/src/analysis/index.ts",
         "/github/workspace/node_modules/@types/node/util.d.ts",
         "/github/workspace/node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -4676,9 +4677,6 @@
       "/github/workspace/src/measure/getTypeScript.ts": [
         "/github/workspace/node_modules/typescript/lib/typescript.d.ts"
       ],
-      "/github/workspace/src/measure/summarize.ts": [
-        "/github/workspace/src/common/index.ts"
-      ],
       "/github/workspace/node_modules/types-publisher/bin/lib/definition-parser.d.ts": [
         "/github/workspace/node_modules/types-publisher/bin/get-definitely-typed.d.ts",
         "/github/workspace/node_modules/types-publisher/bin/lib/packages.d.ts",
@@ -4709,7 +4707,6 @@
         "/github/workspace/src/common/index.ts"
       ],
       "/github/workspace/src/measure/index.ts": [
-        "/github/workspace/src/measure/summarize.ts",
         "/github/workspace/src/measure/measurePerf.ts",
         "/github/workspace/src/measure/printSummary.ts"
       ],
@@ -4725,7 +4722,8 @@
         "/github/workspace/src/common/index.ts"
       ],
       "/github/workspace/src/analysis/index.ts": [
-        "/github/workspace/src/analysis/metrics.ts"
+        "/github/workspace/src/analysis/metrics.ts",
+        "/github/workspace/src/analysis/summarizePackageBenchmark.ts"
       ],
       "/github/workspace/src/write/index.ts": [
         "/github/workspace/src/common/index.ts",
@@ -4861,6 +4859,9 @@
       "/github/workspace/node_modules/@types/yargs/index.d.ts": [
         "/github/workspace/node_modules/@types/node/util.d.ts",
         "/github/workspace/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "/github/workspace/src/analysis/summarizePackageBenchmark.ts": [
+        "/github/workspace/src/common/index.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
@@ -4898,6 +4899,7 @@
       "/github/workspace/node_modules/typescript/lib/typescript.d.ts",
       "/github/workspace/node_modules/types-publisher/bin/lib/common.d.ts",
       "/github/workspace/node_modules/types-publisher/bin/util/util.d.ts",
+      "/github/workspace/src/common/config.ts",
       "/github/workspace/node_modules/@azure/cosmos/lib/src/documents/ConnectionMode.d.ts",
       "/github/workspace/node_modules/@azure/cosmos/lib/src/retry/retryOptions.d.ts",
       "/github/workspace/node_modules/@azure/cosmos/lib/src/client/Container/PartitionKeyRange.d.ts",
@@ -5092,6 +5094,7 @@
       "/github/workspace/node_modules/@azure/cosmos/lib/src/queryMetrics/queryMetricsUtils.d.ts",
       "/github/workspace/node_modules/@azure/cosmos/lib/src/queryMetrics/index.d.ts",
       "/github/workspace/node_modules/@azure/cosmos/lib/src/index.d.ts",
+      "/github/workspace/src/common/db.ts",
       "/github/workspace/node_modules/@types/parsimmon/index.d.ts",
       "/github/workspace/node_modules/definitelytyped-header-parser/index.d.ts",
       "/github/workspace/node_modules/types-publisher/bin/util/logging.d.ts",
@@ -5103,15 +5106,28 @@
       "/github/workspace/src/common/types.ts",
       "/github/workspace/node_modules/types-publisher/bin/tester/test-runner.d.ts",
       "/github/workspace/src/common/utils.ts",
+      "/github/workspace/src/common/getParsedPackages.ts",
       "/github/workspace/src/common/support.ts",
+      "/github/workspace/src/common/index.ts",
+      "/github/workspace/src/measure/createLanguageServiceHost.ts",
       "/github/workspace/src/measure/formatDiagnosticsHost.ts",
+      "/github/workspace/src/measure/getParsedCommandLineForPackage.ts",
       "/github/workspace/src/measure/getTypeScript.ts",
-      "/github/workspace/src/measure/utils.ts",
       "/github/workspace/node_modules/types-publisher/bin/lib/definition-parser.d.ts",
       "/github/workspace/node_modules/types-publisher/bin/tester/get-affected-packages.d.ts",
+      "/github/workspace/src/measure/installDependencies.ts",
+      "/github/workspace/src/measure/measureLanguageServiceWorker.ts",
+      "/github/workspace/src/measure/measureBatchCompilationWorker.ts",
+      "/github/workspace/src/measure/measurePerf.ts",
+      "/github/workspace/src/measure/utils.ts",
       "/github/workspace/src/measure/types/dtslint.d.ts",
       "/github/workspace/src/measure/types/node.d.ts",
+      "/github/workspace/src/analysis/metrics.ts",
+      "/github/workspace/src/write/index.ts",
+      "/github/workspace/src/query/index.ts",
       "/github/workspace/node_modules/@octokit/rest/index.d.ts",
+      "/github/workspace/src/github/getOctokit.ts",
+      "/github/workspace/src/github/comment.ts",
       "/github/workspace/src/github/types/markdown-table.d.ts",
       "/github/workspace/node_modules/@babel/types/lib/index.d.ts",
       "/github/workspace/node_modules/@types/babel__generator/index.d.ts",
@@ -5129,28 +5145,13 @@
       "/github/workspace/node_modules/@types/stack-utils/index.d.ts",
       "/github/workspace/node_modules/@types/tar-stream/index.d.ts",
       "/github/workspace/node_modules/@types/yargs/index.d.ts",
-      "/github/workspace/src/common/config.ts",
-      "/github/workspace/src/common/db.ts",
-      "/github/workspace/src/common/getParsedPackages.ts",
-      "/github/workspace/src/common/index.ts",
-      "/github/workspace/src/measure/createLanguageServiceHost.ts",
-      "/github/workspace/src/measure/getParsedCommandLineForPackage.ts",
-      "/github/workspace/src/measure/summarize.ts",
-      "/github/workspace/src/measure/installDependencies.ts",
-      "/github/workspace/src/measure/measureLanguageServiceWorker.ts",
-      "/github/workspace/src/measure/measureBatchCompilationWorker.ts",
-      "/github/workspace/src/measure/measurePerf.ts",
       "/github/workspace/src/measure/printSummary.ts",
       "/github/workspace/src/measure/index.ts",
-      "/github/workspace/src/analysis/metrics.ts",
+      "/github/workspace/src/analysis/summarizePackageBenchmark.ts",
       "/github/workspace/src/analysis/index.ts",
-      "/github/workspace/src/write/index.ts",
       "/github/workspace/src/cli/benchmark.ts",
-      "/github/workspace/src/query/index.ts",
-      "/github/workspace/src/github/getOctokit.ts",
       "/github/workspace/src/github/createTable.ts",
       "/github/workspace/src/github/createTablesWithAnalysesMessage.ts",
-      "/github/workspace/src/github/comment.ts",
       "/github/workspace/src/github/postInitialComparisonResults.ts",
       "/github/workspace/src/github/postDependentsComparisonResults.ts",
       "/github/workspace/src/cli/compare.ts",
