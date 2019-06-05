@@ -4668,6 +4668,9 @@
       "/github/workspace/src/analysis/metrics.ts": [
         "/github/workspace/src/common/index.ts"
       ],
+      "/github/workspace/src/analysis/summarizePackageBenchmark.ts": [
+        "/github/workspace/src/common/index.ts"
+      ],
       "/github/workspace/src/analysis/index.ts": [
         "/github/workspace/src/analysis/metrics.ts",
         "/github/workspace/src/analysis/summarizePackageBenchmark.ts"
@@ -4859,9 +4862,6 @@
       "/github/workspace/node_modules/@types/yargs/index.d.ts": [
         "/github/workspace/node_modules/@types/node/util.d.ts",
         "/github/workspace/node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "/github/workspace/src/analysis/summarizePackageBenchmark.ts": [
-        "/github/workspace/src/common/index.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
@@ -5111,6 +5111,8 @@
       "/github/workspace/src/write/index.ts",
       "/github/workspace/src/measure/utils.ts",
       "/github/workspace/src/analysis/metrics.ts",
+      "/github/workspace/src/analysis/summarizePackageBenchmark.ts",
+      "/github/workspace/src/analysis/index.ts",
       "/github/workspace/node_modules/typescript/lib/typescript.d.ts",
       "/github/workspace/src/measure/getTypeScript.ts",
       "/github/workspace/node_modules/types-publisher/bin/lib/definition-parser.d.ts",
@@ -5122,10 +5124,22 @@
       "/github/workspace/src/measure/measureLanguageServiceWorker.ts",
       "/github/workspace/src/measure/measureBatchCompilationWorker.ts",
       "/github/workspace/src/measure/measurePerf.ts",
+      "/github/workspace/src/measure/printSummary.ts",
+      "/github/workspace/src/measure/index.ts",
+      "/github/workspace/src/cli/benchmark.ts",
       "/github/workspace/src/query/index.ts",
       "/github/workspace/node_modules/@octokit/rest/index.d.ts",
       "/github/workspace/src/github/getOctokit.ts",
+      "/github/workspace/src/github/createTable.ts",
+      "/github/workspace/src/github/createTablesWithAnalysesMessage.ts",
       "/github/workspace/src/github/comment.ts",
+      "/github/workspace/src/github/postInitialComparisonResults.ts",
+      "/github/workspace/src/github/postDependentsComparisonResults.ts",
+      "/github/workspace/src/cli/compare.ts",
+      "/github/workspace/src/github/postTypeScriptComparisonResult.ts",
+      "/github/workspace/src/cli/compareTypeScript.ts",
+      "/github/workspace/src/cli/getPackagesToBenchmark.ts",
+      "/github/workspace/src/cli/index.ts",
       "/github/workspace/src/github/types/markdown-table.d.ts",
       "/github/workspace/src/measure/types/dtslint.d.ts",
       "/github/workspace/src/measure/types/node.d.ts",
@@ -5144,21 +5158,7 @@
       "/github/workspace/node_modules/@types/jest/index.d.ts",
       "/github/workspace/node_modules/@types/stack-utils/index.d.ts",
       "/github/workspace/node_modules/@types/tar-stream/index.d.ts",
-      "/github/workspace/node_modules/@types/yargs/index.d.ts",
-      "/github/workspace/src/analysis/summarizePackageBenchmark.ts",
-      "/github/workspace/src/analysis/index.ts",
-      "/github/workspace/src/measure/printSummary.ts",
-      "/github/workspace/src/measure/index.ts",
-      "/github/workspace/src/cli/benchmark.ts",
-      "/github/workspace/src/github/createTable.ts",
-      "/github/workspace/src/github/createTablesWithAnalysesMessage.ts",
-      "/github/workspace/src/github/postInitialComparisonResults.ts",
-      "/github/workspace/src/github/postDependentsComparisonResults.ts",
-      "/github/workspace/src/cli/compare.ts",
-      "/github/workspace/src/github/postTypeScriptComparisonResult.ts",
-      "/github/workspace/src/cli/compareTypeScript.ts",
-      "/github/workspace/src/cli/getPackagesToBenchmark.ts",
-      "/github/workspace/src/cli/index.ts"
+      "/github/workspace/node_modules/@types/yargs/index.d.ts"
     ]
   },
   "version": "3.5.1"
