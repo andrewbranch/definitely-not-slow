@@ -11,7 +11,7 @@ action "filter not tag" {
 action "install" {
   needs = "filter not tag"
   uses = "actions/npm@master"
-  args = "install"
+  args = "ci"
 }
 
 action "build" {
@@ -54,7 +54,7 @@ action "check for new tag" {
 action "install-prod" {
   needs = "check for new tag"
   uses = "actions/npm@master"
-  args = "install"
+  args = "ci"
 }
 
 action "build-prod" {
