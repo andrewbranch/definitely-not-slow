@@ -14,6 +14,7 @@ export declare const config: {
     };
     github: {
         userAgent: string;
+        typeScriptBotUsername: string;
         readonly typeScriptBotAuthToken: string;
         commonParams: {
             owner: string;
@@ -22,7 +23,7 @@ export declare const config: {
     };
     comparison: {
         percentDiffWarningThreshold: number;
-        percentDiffSevereThreshold: number;
-        percentDiffGoldStarThreshold: number;
+        percentDiffAlertThreshold: number;
+        percentDiffAwesomeThreshold: number;
     };
 };
