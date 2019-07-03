@@ -4,6 +4,7 @@ import { PackageBenchmarkSummary, Document, config, getPercentDiff, supportsMemo
 export interface FormatOptions {
   precision?: number;
   indent?: number;
+  percentage?: boolean;
 }
 
 export const enum SignificanceLevel {
@@ -35,35 +36,57 @@ export type MetricName =
   | 'completionsMean'
   | 'completionsMedian'
   | 'completionsStdDev'
+  | 'completionsAvgCV'
   | 'quickInfoMean'
   | 'quickInfoMedian'
   | 'quickInfoStdDev'
+  | 'quickInfoAvgCV'
   | 'completionsWorstMean'
   | 'quickInfoWorstMean';
 
 function defaultGetSignificance(percentDiff: number): SignificanceLevel | undefined {
-  if (percentDiff > config.comparison.percentDiffSevereThreshold) {
+  if (percentDiff > config.comparison.percentDiffAlertThreshold) {
     return SignificanceLevel.Alert;
   }
   if (percentDiff > config.comparison.percentDiffWarningThreshold) {
     return SignificanceLevel.Warning;
   }
-  if (percentDiff < config.comparison.percentDiffGoldStarThreshold) {
+  if (percentDiff < config.comparison.percentDiffAwesomeThreshold) {
     return SignificanceLevel.Awesome;
   }
 }
 
 const getInsignificant = () => undefined;
 
-function getSignificanceProportionalTo(proportionalTo: MetricName) {
+function getSignificanceProportionalTo(proportionalTo: MetricName, getSignificance = defaultGetSignificance) {
   return (percentDiff: number, before: Document<PackageBenchmarkSummary>, after: Document<PackageBenchmarkSummary>) => {
     const proportionalToBeforeValue = metrics[proportionalTo].getValue(before);
     const proportionalToAfterValue = metrics[proportionalTo].getValue(after);
     if (typeof proportionalToBeforeValue === 'number' && typeof proportionalToAfterValue === 'number') {
       const proportionalToPercentDiff = getPercentDiff(proportionalToAfterValue, proportionalToBeforeValue);
-      return defaultGetSignificance(percentDiff - proportionalToPercentDiff);
+      const defaultSignificance = getSignificance(percentDiff);
+      const weightedSignificance = getSignificance(percentDiff - proportionalToPercentDiff);
+      // Can’t give out a gold star unless it’s absolutely better, otherwise it looks really confusing
+      // when type count increased by 400% and that gets treated as “awesome” when identifier count
+      // increased by 500%. It may _be_ awesome, but it looks confusing.
+      if (weightedSignificance === SignificanceLevel.Awesome && defaultSignificance !== SignificanceLevel.Awesome) {
+        return undefined;
+      }
+      return weightedSignificance;
     }
   };
+}
+
+function getOrderOfMagnitudeSignificance(percentDiff: number): SignificanceLevel | undefined {
+  if (percentDiff > 10) { // decimal: 10 = 1000% = 10x increase
+    return SignificanceLevel.Alert;
+  }
+  if (percentDiff > 5) {
+    return SignificanceLevel.Warning;
+  }
+  if (percentDiff < -5) {
+    return SignificanceLevel.Awesome;
+  }
 }
 
 export const metrics: { [K in MetricName]: Metric } = {
@@ -72,7 +95,7 @@ export const metrics: { [K in MetricName]: Metric } = {
     sentenceName: 'type count',
     formatOptions: { precision: 0 },
     getValue: x => x.body.typeCount,
-    getSignificance: getSignificanceProportionalTo('identifierCount'),
+    getSignificance: getSignificanceProportionalTo('identifierCount', getOrderOfMagnitudeSignificance),
   },
   memoryUsage: {
     columnName: 'Memory usage',
@@ -80,7 +103,7 @@ export const metrics: { [K in MetricName]: Metric } = {
     getValue: x => x.body.memoryUsage,
     getSignificance: (percentDiff, before, after) => {
       if (supportsMemoryUsage(before) && supportsMemoryUsage(after)) {
-        return getSignificanceProportionalTo('identifierCount')(percentDiff, before, after);
+        return getSignificanceProportionalTo('identifierCount', getOrderOfMagnitudeSignificance)(percentDiff, before, after);
       }
       return getInsignificant();
     }
@@ -90,21 +113,21 @@ export const metrics: { [K in MetricName]: Metric } = {
     sentenceName: 'assignability cache size',
     formatOptions: { precision: 0 },
     getValue: x => x.body.relationCacheSizes && x.body.relationCacheSizes.assignable,
-    getSignificance: getSignificanceProportionalTo('identifierCount'),
+    getSignificance: getSignificanceProportionalTo('identifierCount', getOrderOfMagnitudeSignificance),
   },
   subtypeCacheSize: {
     columnName: 'Subtype cache size',
     sentenceName: 'subtype cache size',
     formatOptions: { precision: 0 },
     getValue: x => x.body.relationCacheSizes && x.body.relationCacheSizes.subtype,
-    getSignificance: getSignificanceProportionalTo('identifierCount'),
+    getSignificance: getSignificanceProportionalTo('identifierCount', getOrderOfMagnitudeSignificance),
   },
   identityCacheSize: {
     columnName: 'Identity cache size',
     sentenceName: 'identity cache size',
     formatOptions: { precision: 0 },
     getValue: x => x.body.relationCacheSizes && x.body.relationCacheSizes.identity,
-    getSignificance: getSignificanceProportionalTo('identifierCount'),
+    getSignificance: getSignificanceProportionalTo('identifierCount', getOrderOfMagnitudeSignificance),
   },
   samplesTaken: {
     columnName: 'Samples taken',
@@ -138,6 +161,13 @@ export const metrics: { [K in MetricName]: Metric } = {
     getValue: x => x.body.completions.standardDeviation,
     getSignificance: getInsignificant,
   },
+  completionsAvgCV: {
+    columnName: 'Mean CV',
+    sentenceName: 'mean coefficient of variation of samples measured for completions time',
+    getValue: x => x.body.completions.meanCoefficientOfVariation,
+    getSignificance: getInsignificant,
+    formatOptions: { percentage: true },
+  },
   completionsWorstMean: {
     columnName: 'Worst duration (ms)',
     sentenceName: 'worst-case duration for getting completions at a position',
@@ -161,6 +191,13 @@ export const metrics: { [K in MetricName]: Metric } = {
     sentenceName: 'standard deviation of the durations for getting quick info at a position',
     getValue: x => x.body.quickInfo.standardDeviation,
     getSignificance: getInsignificant,
+  },
+  quickInfoAvgCV: {
+    columnName: 'Mean CV',
+    sentenceName: 'mean coefficient of variation of samples measured for quick info time',
+    getValue: x => x.body.quickInfo.meanCoefficientOfVariation,
+    getSignificance: getInsignificant,
+    formatOptions: { percentage: true },
   },
   quickInfoWorstMean: {
     columnName: 'Worst duration (ms)',

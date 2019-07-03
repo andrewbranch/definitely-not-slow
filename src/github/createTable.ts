@@ -21,7 +21,7 @@ export function createComparisonTable(before: Document<PackageBenchmarkSummary>,
     ['**`getCompletionsAtPosition`**'], 
     createComparisonRowFromMetric(metrics.completionsMean, before, after, { indent: 1 }),
     createComparisonRowFromMetric(metrics.completionsMedian, before, after, { indent: 1 }),
-    createComparisonRowFromMetric(metrics.completionsStdDev, before, after, { indent: 1 }),
+    createComparisonRowFromMetric(metrics.completionsAvgCV, before, after, { indent: 1 }),
     createComparisonRowFromMetric(metrics.completionsWorstMean, before, after, { indent: 1 }),
     createComparisonRow('Worst identifier', before, after, x => sourceLink(
       x.body.completions.worst.identifierText,
@@ -31,7 +31,7 @@ export function createComparisonTable(before: Document<PackageBenchmarkSummary>,
     ['**`getQuickInfoAtPosition`**'],
     createComparisonRowFromMetric(metrics.quickInfoMean, before, after, { indent: 1 }),
     createComparisonRowFromMetric(metrics.quickInfoMedian, before, after, { indent: 1 }),
-    createComparisonRowFromMetric(metrics.quickInfoStdDev, before, after, { indent: 1 }),
+    createComparisonRowFromMetric(metrics.quickInfoAvgCV, before, after, { indent: 1 }),
     createComparisonRowFromMetric(metrics.quickInfoWorstMean, before, after, { indent: 1 }),
     createComparisonRow('Worst identifier', before, after, x => sourceLink(
       x.body.quickInfo.worst.identifierText,
@@ -70,7 +70,7 @@ export function createSingleRunTable(benchmark: Document<PackageBenchmarkSummary
     ['**`getCompletionsAtPosition`**'], 
     createSingleRunRowFromMetric(metrics.completionsMean, benchmark, { indent: 1 }),
     createSingleRunRowFromMetric(metrics.completionsMedian, benchmark, { indent: 1 }),
-    createSingleRunRowFromMetric(metrics.completionsStdDev, benchmark, { indent: 1 }),
+    createSingleRunRowFromMetric(metrics.completionsAvgCV, benchmark, { indent: 1 }),
     createSingleRunRowFromMetric(metrics.completionsWorstMean, benchmark, { indent: 1 }),
     createSingleRunRow('Worst identifier', benchmark, x => sourceLink(
       x.body.completions.worst.identifierText,
@@ -80,7 +80,7 @@ export function createSingleRunTable(benchmark: Document<PackageBenchmarkSummary
     ['**`getQuickInfoAtPosition`**'],
     createSingleRunRowFromMetric(metrics.quickInfoMean, benchmark, { indent: 1 }),
     createSingleRunRowFromMetric(metrics.quickInfoMedian, benchmark, { indent: 1 }),
-    createSingleRunRowFromMetric(metrics.quickInfoStdDev, benchmark, { indent: 1 }),
+    createSingleRunRowFromMetric(metrics.quickInfoAvgCV, benchmark, { indent: 1 }),
     createSingleRunRowFromMetric(metrics.quickInfoWorstMean, benchmark, { indent: 1 }),
     createSingleRunRow('Worst identifier', benchmark, x => sourceLink(
       x.body.quickInfo.worst.identifierText,
@@ -132,8 +132,8 @@ function createComparisonRow(
   
   return [
     indent(title, formatOptions.indent || 0),
-    format(aValue, formatOptions.precision),
-    format(bValue, formatOptions.precision),
+    format(aValue, formatOptions),
+    format(bValue, formatOptions),
     diff || '',
   ];
 }
@@ -148,7 +148,7 @@ function createSingleRunRow(
 
   return [
     indent(title, formatOptions.indent || 0),
-    format(value, formatOptions.precision),
+    format(value, formatOptions),
   ];
 }
 
@@ -157,7 +157,7 @@ function indent(text: string, level: number): string {
 }
 
 function formatDiff(percentDiff: number, significance: SignificanceLevel | undefined, precision?: number): string {
-  const percentString = format(percentDiff * 100, precision, '%', true);
+  const percentString = format(percentDiff, { percentage: true }, '%', true);
   if (!significance) {
     return percentString;
   }
@@ -170,12 +170,17 @@ function formatDiff(percentDiff: number, significance: SignificanceLevel | undef
   }
 }
 
-function format(x: string | number | undefined, precision = 1, unit = '', showPlusSign?: boolean): string {
+function format(
+  x: string | number | undefined,
+  { precision = 1, percentage }: FormatOptions = {},
+  unit = percentage ? '%' : '',
+  showPlusSign?: boolean
+): string {
   switch (typeof x) {
     case 'string': return x + unit;
     case 'number':
-      if (isNaN(x)) return '';
-      let numString = x.toFixed(precision).replace(/^-0(\.0*)?$/, '0$1');
+      if (isNaN(x) || !isFinite(x)) return '';
+      let numString = (percentage ? x * 100 : x).toFixed(precision).replace(/^-0(\.0*)?$/, '0$1');
       if (showPlusSign && x > 0 && !/^0(\.0*)?$/.test(numString)) numString = `+${numString}`;
       return numString + unit;
     default: return '';

@@ -7,7 +7,7 @@ export const config = {
   database: {
     benchmarksDatabaseId: 'benchmarks',
     packageBenchmarksContainerId: 'packageBenchmarks',
-    packageBenchmarksDocumentSchemaVersion: 3,
+    packageBenchmarksDocumentSchemaVersion: 4,
     typeScriptComparisonsContainerId: 'typeScriptComparisons',
     typeScriptComparisonsDocumentSchemaVersion: 1,
     endpoint: 'https://dt-perf.documents.azure.com:443/',
@@ -24,6 +24,7 @@ export const config = {
   },
   github: {
     userAgent: 'definitely-not-slow',
+    typeScriptBotUsername: 'typescript-bot',
     get typeScriptBotAuthToken() {
       return assertDefined(
         process.env.TYPESCRIPT_BOT_GITHUB_TOKEN,
@@ -35,8 +36,8 @@ export const config = {
     },
   },
   comparison: {
-    percentDiffWarningThreshold: 0.1,
-    percentDiffSevereThreshold: 0.5,
-    percentDiffGoldStarThreshold: -0.25,
+    percentDiffWarningThreshold: 0.2,
+    percentDiffAlertThreshold: 1,
+    percentDiffAwesomeThreshold: -0.25,
   },
 };
