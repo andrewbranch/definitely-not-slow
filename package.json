@@ -4,10 +4,10 @@
   "description": "",
   "bin": "index.js",
   "scripts": {
-    "build": "tsc -b .",
+    "build": "tsc -b src/cli",
     "test": "jest",
     "cli": "node dist/src/cli/index.js",
-    "git-config": "test \"$GITHUB_WORKFLOW\" && git remote -v && git config --global user.name \"$GH_USER\" && git config --global user.email \"$GH_EMAIL\" || echo ''",
+    "git-config": "test \"$GITHUB_WORKFLOW\" && git remote set-url --push origin \"https://$GH_USER:$GITHUB_TOKEN@github.com/andrewbranch/definitely-not-slow\" && git config --global user.name \"$GH_USER\" && git config --global user.email \"$GH_EMAIL\" && git config || echo ''",
     "prepush-production": "npm run git-config",
     "push-production": "git fetch && git checkout production && git merge -m 'Merge master into production' origin/master && npm run build && git add dist && git commit --allow-empty -m 'Update dist' && git push -u origin production && git checkout -",
     "prepush-beta": "npm run git-config",
@@ -16,17 +16,17 @@
   "author": "Andrew Branch <andrew@wheream.io>",
   "license": "MIT",
   "devDependencies": {
-    "@types/jest": "^24.0.14",
-    "@types/node": "^12.0.10",
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.8",
     "jest": "^24.8.0",
     "ts-jest": "^24.0.2"
   },
   "dependencies": {
     "@azure/cosmos": "^2.1.7",
-    "@octokit/rest": "^16.28.1",
+    "@octokit/rest": "^16.30.1",
     "dtslint": "^0.7.7",
     "markdown-table": "^1.1.3",
     "types-publisher": "github:microsoft/types-publisher#production",
-    "typescript": "^3.5.2"
+    "typescript": "^3.7.0-dev.20191004"
   }
 }
