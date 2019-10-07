@@ -1,9 +1,10 @@
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -27,4 +28,4 @@ function getLatestBenchmark({ container, packageName, packageVersion, typeScript
     });
 }
 exports.getLatestBenchmark = getLatestBenchmark;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi9zcmMvcXVlcnkvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7OztBQUNBLHNDQUFtRjtBQVNuRixTQUFzQixrQkFBa0IsQ0FBQyxFQUN2QyxTQUFTLEVBQ1QsV0FBVyxFQUNYLGNBQWMsRUFDZCwyQkFBMkIsR0FDRDs7UUFDMUIsTUFBTSxRQUFRLEdBQUcsTUFBTSxTQUFTLENBQUMsS0FBSyxDQUFDLEtBQUssQ0FBQztZQUMzQyxLQUFLLEVBQ0gsdUJBQXVCLGVBQU0sQ0FBQyxRQUFRLENBQUMsNEJBQTRCLElBQUk7Z0JBQ3ZFLDJDQUEyQztnQkFDM0MsK0NBQStDO2dCQUMvQyx1REFBdUQ7Z0JBQ3ZELDZCQUE2QjtZQUMvQixVQUFVLEVBQUU7Z0JBQ1YsRUFBRSxJQUFJLEVBQUUsY0FBYyxFQUFFLEtBQUssRUFBRSxXQUFXLEVBQUU7Z0JBQzVDLEVBQUUsSUFBSSxFQUFFLGlCQUFpQixFQUFFLEtBQUssRUFBRSxjQUFjLENBQUMsUUFBUSxFQUFFLEVBQUU7Z0JBQzdELEVBQUUsSUFBSSxFQUFFLFlBQVksRUFBRSxLQUFLLEVBQUUsMkJBQTJCLEVBQUU7YUFDM0Q7U0FDRixFQUFFLEVBQUUseUJBQXlCLEVBQUUsSUFBSSxFQUFFLENBQUMsQ0FBQyxPQUFPLEVBQUUsQ0FBQztRQUVsRCxPQUFPLFFBQVEsQ0FBQyxNQUFNLENBQUM7SUFDekIsQ0FBQztDQUFBO0FBckJELGdEQXFCQyJ9
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi9zcmMvcXVlcnkvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7QUFDQSxzQ0FBbUY7QUFTbkYsU0FBc0Isa0JBQWtCLENBQUMsRUFDdkMsU0FBUyxFQUNULFdBQVcsRUFDWCxjQUFjLEVBQ2QsMkJBQTJCLEdBQ0Q7O1FBQzFCLE1BQU0sUUFBUSxHQUFHLE1BQU0sU0FBUyxDQUFDLEtBQUssQ0FBQyxLQUFLLENBQUM7WUFDM0MsS0FBSyxFQUNILHVCQUF1QixlQUFNLENBQUMsUUFBUSxDQUFDLDRCQUE0QixJQUFJO2dCQUN2RSwyQ0FBMkM7Z0JBQzNDLCtDQUErQztnQkFDL0MsdURBQXVEO2dCQUN2RCw2QkFBNkI7WUFDL0IsVUFBVSxFQUFFO2dCQUNWLEVBQUUsSUFBSSxFQUFFLGNBQWMsRUFBRSxLQUFLLEVBQUUsV0FBVyxFQUFFO2dCQUM1QyxFQUFFLElBQUksRUFBRSxpQkFBaUIsRUFBRSxLQUFLLEVBQUUsY0FBYyxDQUFDLFFBQVEsRUFBRSxFQUFFO2dCQUM3RCxFQUFFLElBQUksRUFBRSxZQUFZLEVBQUUsS0FBSyxFQUFFLDJCQUEyQixFQUFFO2FBQzNEO1NBQ0YsRUFBRSxFQUFFLHlCQUF5QixFQUFFLElBQUksRUFBRSxDQUFDLENBQUMsT0FBTyxFQUFFLENBQUM7UUFFbEQsT0FBTyxRQUFRLENBQUMsTUFBTSxDQUFDO0lBQ3pCLENBQUM7Q0FBQTtBQXJCRCxnREFxQkMifQ==
